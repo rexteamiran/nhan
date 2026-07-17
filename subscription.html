@@ -1,1158 +1,1099 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>__USER_NAME__ - Subscriber Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Shah-Pasand Imperial Persian Cosmic Palette */
-            --lapis: #0e1b3d;
-            --lapis-deep: #081127;
-            --obsidian: #020308;
-            --obsidian-soft: #060814;
-            --saffron: #d4af37;
-            --saffron-soft: #f2d777;
-            --turquoise: #00a693;
-            --turquoise-bright: #1fd9c4;
-
-            --bg-primary: var(--obsidian);
-            --bg-cosmic-1: var(--lapis-deep);
-            --bg-cosmic-2: var(--obsidian-soft);
-            --bg-card: rgba(14, 27, 61, 0.55);
-            --bg-card-inner: rgba(2, 3, 8, 0.55);
-            --bg-input: rgba(2, 3, 8, 0.6);
-            --border-card: rgba(212, 175, 55, 0.35);
-            --border-inner: rgba(0, 166, 147, 0.28);
-            --text-primary: #f4ecd8;
-            --text-secondary: #7fd8cb;
-            --text-muted: #8a93b8;
-            --accent: var(--saffron);
-            --accent-light: rgba(212, 175, 55, 0.1);
-            --accent-border: rgba(212, 175, 55, 0.45);
-            --accent-hover: var(--turquoise-bright);
-            --green-bg: rgba(0, 166, 147, 0.14);
-            --green-border: rgba(0, 166, 147, 0.4);
-            --green-text: #3be8cf;
-            --amber-bg: rgba(212, 175, 55, 0.14);
-            --amber-border: rgba(212, 175, 55, 0.45);
-            --amber-text: #f2d777;
-            --red-bg: rgba(219, 68, 68, 0.14);
-            --red-border: rgba(219, 68, 68, 0.4);
-            --red-text: #f47272;
-            --progress-bg: rgba(2, 3, 8, 0.8);
-            --shadow-card: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(212, 175, 55, 0.06), inset 0 1px 0 0 rgba(212, 175, 55, 0.08);
-            --btn-primary-bg: linear-gradient(135deg, var(--turquoise) 0%, #007c6e 100%);
-            --btn-primary-hover: linear-gradient(135deg, var(--saffron) 0%, #b8912a 100%);
-            --btn-secondary-bg: rgba(14, 27, 61, 0.5);
-            --btn-secondary-hover: rgba(0, 166, 147, 0.15);
-            --modal-bg: rgba(2, 3, 8, 0.88);
-            --modal-card: var(--lapis-deep);
+            /* Majestic Royal "Shah-Pasand" Light Palette */
+            --bg-primary: #f6f3eb; 
+            --bg-card: rgba(254, 252, 247, 0.95);
+            --bg-card-inner: #ece5d3;
+            --bg-input: #ffffff;
+            --border-card: #c5a028; /* Soft Saffron Gold */
+            --border-inner: rgba(0, 166, 147, 0.35); /* Persian Turquoise */
+            --text-primary: #0e1b3d; /* Lapis Lazuli */
+            --text-secondary: #00a693;
+            --text-muted: #5c6b8c;
+            --accent: #c5a028;
+            --accent-turquoise: #00a693;
+            --accent-lapis: #0e1b3d;
+            --gold-glow: 0 4px 15px rgba(197, 160, 40, 0.2);
+            --turquoise-glow: 0 4px 15px rgba(0, 166, 147, 0.2);
+            
+            --green-bg: rgba(0, 166, 147, 0.15);
+            --green-border: #00a693;
+            --green-text: #00a693;
+            --amber-bg: rgba(212, 175, 55, 0.15);
+            --amber-border: #d4af37;
+            --amber-text: #d4af37;
+            --red-bg: rgba(220, 38, 38, 0.15);
+            --red-border: #dc2626;
+            --red-text: #dc2626;
         }
 
-        /* Light "Day Court" variant — kept for theme toggle compatibility */
         .dark {
-            --bg-primary: var(--obsidian);
+            /* Cosmic Imperial Dark Palette */
+            --bg-primary: #020308; /* Cosmic Deep Obsidian */
+            --bg-card: rgba(14, 27, 61, 0.7); /* Lapis Lazuli Deep Blue */
+            --bg-card-inner: rgba(2, 3, 8, 0.75);
+            --bg-input: #050a18;
+            --border-card: #d4af37; /* Majestic Saffron Gold */
+            --border-inner: rgba(0, 166, 147, 0.5); /* Radiant Persian Turquoise */
+            --text-primary: #fcfaf6;
+            --text-secondary: #00a693;
+            --text-muted: #8fa0c4;
+            --accent: #d4af37;
+            --accent-turquoise: #00a693;
+            --accent-lapis: #0e1b3d;
+            --gold-glow: 0 0 25px rgba(212, 175, 55, 0.45);
+            --turquoise-glow: 0 0 25px rgba(0, 166, 147, 0.4);
         }
-        html:not(.dark) {
-            --bg-primary: #0d1830;
-            --bg-cosmic-1: #14224a;
-            --bg-cosmic-2: #0a1330;
-            --bg-card: rgba(20, 34, 74, 0.6);
-            --bg-card-inner: rgba(8, 14, 32, 0.55);
-            --bg-input: rgba(8, 14, 32, 0.65);
-            --text-primary: #f8f1de;
-            --text-muted: #9aa4cc;
-            --shadow-card: 0 25px 60px -15px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(212, 175, 55, 0.12), inset 0 1px 0 0 rgba(212, 175, 55, 0.12);
-        }
-
-        * { box-sizing: border-box; }
-        html, body { margin: 0; padding: 0; }
 
         body {
             font-family: 'Inter', 'Vazirmatn', sans-serif;
-            background: var(--bg-primary);
+            background-color: var(--bg-primary);
+            /* Galactic Deep Starfield Background combined with Geometric Elements */
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(14, 27, 61, 0.75), transparent 85%),
+                radial-gradient(1px 1px at 25px 40px, #ffffff, transparent),
+                radial-gradient(1px 1px at 75px 120px, rgba(255,255,255,0.4), transparent),
+                radial-gradient(2px 2px at 120px 200px, var(--border-card), transparent),
+                radial-gradient(1px 1px at 220px 300px, rgba(0, 166, 147, 0.7), transparent);
+            background-size: 100% 100%, 150px 150px, 180px 180px, 210px 210px, 250px 250px;
             color: var(--text-primary);
-            -webkit-font-smoothing: antialiased;
+            margin: 0;
+            padding: 2rem 1rem;
             min-height: 100vh;
-            padding: 2rem 1.25rem 4rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            position: relative;
             overflow-x: hidden;
-            transition: background 0.4s ease, color 0.4s ease;
-        }
-        [lang="fa"] body { font-family: 'Vazirmatn', sans-serif; }
-
-        /* ===================== COSMIC BACKDROP ===================== */
-        .cosmos {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            background:
-                radial-gradient(ellipse at 20% 10%, rgba(0, 166, 147, 0.16), transparent 45%),
-                radial-gradient(ellipse at 85% 20%, rgba(212, 175, 55, 0.12), transparent 50%),
-                radial-gradient(ellipse at 50% 90%, rgba(14, 27, 61, 0.6), transparent 60%),
-                linear-gradient(180deg, var(--bg-cosmic-2) 0%, var(--bg-cosmic-1) 45%, var(--bg-cosmic-2) 100%);
-        }
-        .cosmos::before {
-            /* starfield */
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image:
-                radial-gradient(1.5px 1.5px at 10% 15%, rgba(244,236,216,0.7), transparent),
-                radial-gradient(1px 1px at 25% 45%, rgba(244,236,216,0.5), transparent),
-                radial-gradient(1.5px 1.5px at 40% 8%, rgba(212,175,55,0.6), transparent),
-                radial-gradient(1px 1px at 60% 30%, rgba(244,236,216,0.6), transparent),
-                radial-gradient(2px 2px at 75% 60%, rgba(0,166,147,0.5), transparent),
-                radial-gradient(1px 1px at 88% 12%, rgba(244,236,216,0.5), transparent),
-                radial-gradient(1.5px 1.5px at 92% 75%, rgba(212,175,55,0.5), transparent),
-                radial-gradient(1px 1px at 15% 80%, rgba(244,236,216,0.4), transparent),
-                radial-gradient(1px 1px at 50% 92%, rgba(244,236,216,0.5), transparent),
-                radial-gradient(1.5px 1.5px at 35% 65%, rgba(0,166,147,0.4), transparent);
-            background-repeat: repeat;
-            background-size: 380px 380px;
-            opacity: 0.9;
-            animation: driftStars 90s linear infinite;
-        }
-        @keyframes driftStars {
-            0% { background-position: 0 0; }
-            100% { background-position: -380px 380px; }
+            transition: background 0.3s, color 0.3s;
+            box-sizing: border-box;
         }
 
-        /* Rotating astrolabe rings behind the header */
-        .astrolabe-bg {
-            position: absolute;
-            top: -140px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 560px;
-            height: 560px;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.55;
+        /* Prevent Original Tailwind ZAGROOO Pseudo-element generation */
+        body::before, body::after {
+            content: none !important;
+            display: none !important;
         }
-        .astrolabe-bg .ring {
-            position: absolute;
-            inset: 0;
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Celestial Seal & Header Layout */
+        .celestial-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .celestial-seal {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.25rem auto;
+            border: 2px solid var(--border-card);
             border-radius: 50%;
-            border: 1px dashed rgba(212, 175, 55, 0.22);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(circle, var(--accent-lapis) 30%, transparent 80%);
+            box-shadow: var(--gold-glow);
+            animation: sealRotate 25s linear infinite;
         }
-        .astrolabe-bg .ring--2 { inset: 40px; border-color: rgba(0, 166, 147, 0.18); border-style: solid; border-width: 1px; }
-        .astrolabe-bg .ring--3 { inset: 90px; border-color: rgba(212, 175, 55, 0.14); }
-        .astrolabe-bg .ring--1 { animation: spinAstrolabe 120s linear infinite; }
-        .astrolabe-bg .ring--2 { animation: spinAstrolabe 90s linear infinite reverse; }
-        .astrolabe-bg .ring--3 { animation: spinAstrolabe 150s linear infinite; }
-        .astrolabe-bg .ring::before {
-            content: "";
+
+        .celestial-seal::after {
+            content: '';
             position: absolute;
-            top: -3px;
-            left: 50%;
-            width: 6px;
-            height: 6px;
-            margin-left: -3px;
+            inset: 5px;
+            border: 1px dashed var(--accent-turquoise);
             border-radius: 50%;
-            background: var(--saffron);
-            box-shadow: 0 0 10px 2px var(--saffron);
         }
-        @keyframes spinAstrolabe {
+
+        .celestial-seal-inner {
+            width: 80%;
+            height: 80%;
+            border: 1px solid var(--border-card);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--border-card);
+            text-shadow: var(--gold-glow);
+        }
+
+        @keyframes sealRotate {
+            0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
-        /* ===================== CELESTIAL IMPERIAL SEAL ===================== */
-        .imperial-seal {
-            position: relative;
-            z-index: 5;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0.5rem auto 3rem;
-            text-align: center;
-        }
-        .imperial-seal .seal-ring {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 2.5rem;
-        }
-        .imperial-seal .seal-ring::before,
-        .imperial-seal .seal-ring::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 90px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--saffron));
-            opacity: 0.6;
-        }
-        .imperial-seal .seal-ring::before { left: -90px; }
-        .imperial-seal .seal-ring::after { right: -90px; transform: scaleX(-1); }
-        .imperial-title {
-            font-family: 'Cinzel', 'Vazirmatn', serif;
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            font-weight: 800;
-            letter-spacing: 0.5em;
-            text-indent: 0.5em;
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: 0.35em;
             text-transform: uppercase;
-            margin: 0;
-            background: linear-gradient(100deg, #b8912a 0%, var(--saffron-soft) 25%, var(--turquoise-bright) 50%, var(--saffron-soft) 75%, #b8912a 100%);
-            background-size: 250% auto;
+            background: linear-gradient(135deg, var(--border-card) 10%, var(--accent-turquoise) 50%, var(--text-primary) 90%);
+            background-size: 300% auto;
             -webkit-background-clip: text;
-            background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: sealFlow 8s ease infinite, sealPulseGlow 4s ease-in-out infinite;
-            filter: drop-shadow(0 0 18px rgba(212, 175, 55, 0.35));
+            animation: celestialFlow 8s ease infinite;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
+            margin: 0;
+            padding-left: 0.35em; /* Compensate for letter spacing alignment */
         }
-        @keyframes sealFlow {
+
+        @keyframes celestialFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        @keyframes sealPulseGlow {
-            0%, 100% { filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.3)); }
-            50% { filter: drop-shadow(0 0 26px rgba(0, 166, 147, 0.4)); }
-        }
-        .imperial-subtitle {
-            display: block;
-            margin-top: 0.6rem;
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-weight: 500;
-            font-size: 0.95rem;
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            opacity: 0.75;
-        }
 
-        /* ===================== TOP UTILITY BAR ===================== */
-        .utility-bar {
-            width: 100%;
-            max-width: 1200px;
+        /* Top Bar Toggles */
+        .toggle-container {
             display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            margin-bottom: 0.5rem;
-            z-index: 10;
-            position: relative;
-        }
-        .utility-bar .controls { display: flex; gap: 0.75rem; }
-
-        /* ===================== LAYOUT: SYMMETRIC ROYAL COURT ===================== */
-        .royal-court {
+            gap: 0.75rem;
+            margin-bottom: 2rem;
             width: 100%;
-            max-width: 1180px;
+            max-width: 1100px;
+            justify-content: flex-end;
             z-index: 10;
-            position: relative;
-            display: grid;
-            grid-template-columns: 380px 1fr;
-            gap: 2rem;
-            align-items: start;
-        }
-        @media (max-width: 900px) {
-            .royal-court { grid-template-columns: 1fr; }
         }
 
-        .court-wing--left { display: flex; flex-direction: column; gap: 1.75rem; }
-        .court-wing--right { display: flex; flex-direction: column; gap: 1.75rem; }
-        .metrics-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.75rem;
-        }
-        @media (max-width: 560px) {
-            .metrics-row { grid-template-columns: 1fr; }
-        }
-
-        /* ===================== MIHRAB ARCH CARDS ===================== */
-        .bento-card {
-            background: var(--bg-card);
+        .btn-toggle {
+            background: rgba(14, 27, 61, 0.85);
             border: 1px solid var(--border-card);
-            box-shadow: var(--shadow-card);
-            backdrop-filter: blur(22px);
-            -webkit-backdrop-filter: blur(22px);
+            color: var(--text-primary);
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: var(--gold-glow);
+        }
+
+        .btn-toggle:hover {
+            background: var(--accent-turquoise);
+            border-color: var(--text-primary);
+            box-shadow: var(--turquoise-glow);
+            transform: translateY(-2px);
+        }
+
+        /* Main Symmetric Portal Grid */
+        .portal-container {
+            width: 100%;
+            max-width: 1100px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            z-index: 10;
+        }
+
+        @media (min-width: 900px) {
+            .portal-container {
+                grid-template-columns: 340px 1fr;
+            }
+        }
+
+        .column-sidebar, .column-main {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        /* Symmetric Mihrab Royal Arch Cards */
+        .mihrab-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-card);
+            box-shadow: var(--gold-glow), inset 0 0 25px rgba(0, 166, 147, 0.15);
+            border-radius: 120px 120px 24px 24px; /* Distinctive Persian Arch Curve */
+            padding: 3.5rem 2rem 2.5rem 2rem;
             position: relative;
-            overflow: hidden;
-            padding: 1.75rem;
-            transform-style: preserve-3d;
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
-            /* Mihrab pointed-arch silhouette */
-            border-radius: 3.5rem 3.5rem 1rem 1rem;
-        }
-        .bento-card::before {
-            /* engraved gold arch tracery */
-            content: '';
-            position: absolute;
-            inset: 7px;
-            border: 1px dashed var(--accent-border);
-            border-radius: 3.1rem 3.1rem 0.7rem 0.7rem;
-            opacity: 0.45;
-            pointer-events: none;
-            transition: opacity 0.4s ease, border-color 0.4s ease;
-        }
-        .bento-card::after {
-            /* keystone glow at the arch apex */
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 46%;
-            height: 3px;
-            transform: translateX(-50%);
-            background: linear-gradient(90deg, transparent, var(--saffron), transparent);
-            opacity: 0.65;
-            filter: blur(1px);
-        }
-        .bento-card:hover {
-            transform: translateY(-6px) rotateX(2deg);
-            border-color: var(--accent);
-            box-shadow: 0 35px 70px -20px rgba(0, 166, 147, 0.35), 0 0 40px -10px rgba(212, 175, 55, 0.25);
-        }
-        .bento-card:hover::before { opacity: 0.9; border-style: solid; }
-
-        .bento-inner {
-            background: var(--bg-card-inner);
-            border: 1px solid var(--border-inner);
-            border-radius: 1.5rem 1.5rem 0.6rem 0.6rem;
-            transition: all 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
-        /* ===================== PROFILE ARCHWAY ===================== */
-        .profile-card { text-align: center; display: flex; flex-direction: column; align-items: center; }
-        .profile-halo {
+        .mihrab-card-sub {
+            background: var(--bg-card);
+            border: 2px solid var(--border-card);
+            box-shadow: var(--gold-glow);
+            border-radius: 36px 36px 20px 20px;
+            padding: 2.25rem 2rem;
+            position: relative;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* Golden dashed inner border framing (Persian Manuscript Borders) */
+        .mihrab-card::before, .mihrab-card-sub::before {
+            content: '';
             position: absolute;
-            top: -20px;
-            width: 220px;
-            height: 220px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.18), transparent 70%);
+            inset: 8px;
+            border: 1px dashed var(--border-inner);
+            border-radius: inherit;
             pointer-events: none;
         }
+
+        .mihrab-card:hover, .mihrab-card-sub:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.25), var(--turquoise-glow);
+        }
+
+        /* Profile & Status Stylings */
         .profile-avatar {
-            width: 5.5rem;
-            height: 5.5rem;
+            width: 85px;
+            height: 85px;
+            border-radius: 50% 50% 0 0; /* Symmetric Mihrab avatar base */
+            background: linear-gradient(135deg, var(--accent-turquoise), var(--border-card));
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.1rem;
-            position: relative;
-            z-index: 2;
-            /* authentic mihrab-arch avatar frame */
-            border-radius: 50% 50% 6px 6px;
-            background: linear-gradient(160deg, rgba(212, 175, 55, 0.28), rgba(0, 166, 147, 0.08));
-            border: 2px solid var(--accent-border);
-            color: var(--accent);
-            box-shadow: 0 0 25px -5px rgba(212, 175, 55, 0.5), inset 0 0 15px rgba(212, 175, 55, 0.15);
-        }
-        .profile-avatar svg { width: 2.4rem; height: 2.4rem; }
-        .profile-name {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            color: var(--text-primary);
-            margin: 0 0 0.25rem;
-            position: relative;
-            z-index: 2;
-        }
-        .profile-id {
-            font-family: 'Inter', monospace;
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            margin: 0 0 1.4rem;
-            letter-spacing: 0.05em;
-            position: relative;
-            z-index: 2;
-        }
-        .status-badge-wrap { width: 100%; position: relative; z-index: 2; }
-        #status-badge {
-            display: inline-block;
-            width: 100%;
-            padding: 0.6rem 1.5rem;
-            border-radius: 999px;
-            font-size: 0.68rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            box-shadow: 0 4px 14px -4px rgba(0,0,0,0.4);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--gold-glow);
+            border: 2px solid var(--border-card);
         }
 
-        /* ===================== SECTION LABELS ===================== */
-        .section-label {
-            font-family: 'Cinzel', serif;
-            font-size: 0.72rem;
-            font-weight: 700;
+        .profile-name {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin: 0 0 0.25rem 0;
+            letter-spacing: -0.02em;
+        }
+
+        .profile-id {
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0 0 1.5rem 0;
+        }
+
+        .status-badge-container {
+            width: 100%;
+            z-index: 5;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: var(--text-secondary);
-            margin: 0 0 1rem;
+            letter-spacing: 0.15em;
+            color: var(--border-card);
+            margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
-            gap: 0.55rem;
+            justify-content: center;
+            gap: 0.5rem;
         }
-        .section-label svg { width: 1rem; height: 1rem; flex-shrink: 0; }
 
-        .expiry-value {
-            font-family: 'Cinzel', serif;
-            font-size: 1.7rem;
-            font-weight: 800;
+        .info-value {
+            font-size: 1.6rem;
+            font-weight: 900;
             color: var(--text-primary);
-            display: block;
+            margin: 0 0 0.25rem 0;
         }
-        .expiry-caption { font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 0.25rem; }
-        .divider-line { border: none; border-top: 1px dashed var(--border-inner); margin: 1.4rem 0 1.1rem; }
-        .ip-row { display: flex; justify-content: space-between; align-items: center; }
-        .ip-label { font-size: 0.72rem; font-weight: 700; color: var(--text-secondary); }
-        .ip-value { font-size: 0.72rem; font-family: monospace; font-weight: 600; color: var(--text-primary); }
 
-        /* ===================== ORBITAL GAUGE (usage rings) ===================== */
-        .metric-card { position: relative; overflow: hidden; }
-        .metric-card .metric-glow {
-            position: absolute;
-            top: -30px;
-            right: -30px;
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            filter: blur(10px);
-            opacity: 0.15;
-            pointer-events: none;
+        .info-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin: 0;
         }
-        .metric-card .metric-glow--turquoise { background: var(--turquoise); }
-        .metric-card .metric-glow--saffron { background: var(--saffron); }
-        .metric-head {
+
+        .info-divider {
+            width: 100%;
+            height: 1px;
+            border-top: 1px dashed var(--border-inner);
+            margin: 1.5rem 0;
+        }
+
+        .info-row {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 2;
-        }
-        .metric-icon-badge {
-            padding: 0.5rem;
-            border-radius: 0.6rem;
-            background: var(--bg-card-inner);
-            border: 1px solid var(--border-inner);
-            display: flex;
-        }
-        .metric-icon-badge svg { width: 1rem; height: 1rem; }
-        .metric-value-row {
-            display: flex;
-            align-items: baseline;
-            gap: 0.4rem;
-            margin-bottom: 1.25rem;
-            position: relative;
-            z-index: 2;
-        }
-        .metric-value { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 800; color: var(--text-primary); }
-        .metric-limit { font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); }
-
-        /* Orbital gauge dial wrapping the injected progress bar markup */
-        .orbital-gauge {
-            position: relative;
-            z-index: 2;
-            padding: 0.6rem 0.6rem 0.3rem;
-            border-radius: 1.4rem;
-            background:
-                repeating-conic-gradient(from -90deg, rgba(212,175,55,0.06) 0deg 3deg, transparent 3deg 12deg),
-                var(--bg-card-inner);
-            border: 1px solid var(--border-inner);
-        }
-        .orbital-gauge::before {
-            content: "";
-            display: block;
-            height: 3px;
-            margin-bottom: 0.5rem;
-            background:
-                radial-gradient(circle, var(--saffron) 1.5px, transparent 1.6px) repeat-x;
-            background-size: 10px 3px;
-            opacity: 0.55;
+            align-items: center;
+            width: 100%;
+            font-size: 0.85rem;
         }
 
-        /* These rules restyle the raw progress-bar div structure injected via
-           __TOTAL_PROGRESS__ / __DAILY_PROGRESS__ (a div wrapper containing an
-           inner fill div) into a glowing astrolabe dial track. Selector targets
-           any div whose class contains "progress" so the backend markup is
-           unaffected. */
-        .orbital-gauge div[class*="progress"] {
-            height: 16px !important;
-            background: rgba(2, 3, 8, 0.85) !important;
-            border: 1px solid rgba(212, 175, 55, 0.3) !important;
-            border-radius: 999px !important;
-            overflow: hidden !important;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.9), inset 0 0 0 1px rgba(0,166,147,0.08) !important;
-            position: relative !important;
+        .info-row-label {
+            font-weight: 700;
+            color: var(--text-muted);
         }
-        .orbital-gauge div[class*="progress"] > div {
-            height: 100% !important;
-            background: linear-gradient(90deg, var(--lapis) 0%, var(--turquoise) 55%, var(--saffron-soft) 100%) !important;
-            border-radius: 999px !important;
-            box-shadow: 0 0 16px var(--turquoise), 0 0 4px var(--saffron-soft) !important;
-            transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-            position: relative !important;
+
+        .info-row-val {
+            font-family: monospace;
+            font-weight: 800;
+            color: var(--text-primary);
         }
-        .orbital-gauge div[class*="progress"] > div::after {
-            /* traveling comet head */
-            content: "";
-            position: absolute;
-            top: 50%;
-            right: 0;
-            width: 8px;
-            height: 8px;
-            transform: translate(50%, -50%);
+
+        /* Astronomical / Orbital Astrolabe Gauges */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 650px) {
+            .metrics-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .astrolabe-gauge {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 1.5rem auto;
             border-radius: 50%;
-            background: var(--saffron-soft);
-            box-shadow: 0 0 10px 3px var(--saffron-soft), 0 0 20px 6px rgba(212,175,55,0.4);
+            border: 2px solid var(--border-card);
+            background: radial-gradient(circle, var(--bg-card-inner) 40%, transparent 100%);
+            box-shadow: var(--gold-glow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
-        .orbital-gauge div[class*="progress"]::after {
-            /* dial graduation marks like an astrolabe limb */
-            content: "";
+
+        .astrolabe-ring {
+            position: absolute;
+            inset: 8px;
+            border: 1px dashed var(--accent-turquoise);
+            border-radius: 50%;
+            animation: sealRotate 35s linear infinite reverse;
+            pointer-events: none;
+        }
+
+        .astrolabe-inner-circle {
+            position: absolute;
+            inset: 22px;
+            border: 1px solid rgba(214, 175, 55, 0.15);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .astrolabe-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            z-index: 2;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .astrolabe-limit {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            z-index: 2;
+            margin-bottom: 0.75rem;
+        }
+
+        .astrolabe-progress-container {
+            width: 80%;
+            z-index: 2;
+        }
+
+        /* Global overrides for system-inserted linear progress bar inside astrolabe */
+        .progress-bar-bg, div[class*="progress"] {
+            height: 8px !important;
+            background: #020308 !important;
+            border: 1px solid var(--border-card) !important;
+            border-radius: 10px !important;
+            overflow: hidden !important;
+            position: relative !important;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.8) !important;
+            width: 100% !important;
+        }
+
+        .progress-bar-bg > div, div[class*="progress"] > div {
+            height: 100% !important;
+            background: linear-gradient(90deg, var(--accent-turquoise) 0%, var(--border-card) 100%) !important;
+            box-shadow: var(--turquoise-glow) !important;
+            border-radius: 10px !important;
+            transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        /* Integration & Connections Styles */
+        .card-header-main {
+            margin-bottom: 2rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--border-card);
+            margin: 0 0 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-shadow: var(--gold-glow);
+        }
+
+        .card-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .primary-connection-box {
+            background: var(--bg-card-inner);
+            border: 2px solid var(--border-card);
+            border-radius: 20px;
+            padding: 1.75rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        .primary-connection-box::before {
+            content: '';
             position: absolute;
             inset: 0;
-            background: repeating-linear-gradient(90deg,
-                transparent 0, transparent calc(10% - 1px),
-                rgba(255,255,255,0.25) calc(10% - 1px), rgba(255,255,255,0.25) 10%
-            );
+            background: radial-gradient(circle at 100% 0%, rgba(0, 166, 147, 0.15) 0%, transparent 50%);
             pointer-events: none;
-            z-index: 5;
-            border-radius: inherit;
         }
 
-        /* ===================== FORM INPUTS ===================== */
-        .input-field {
+        .connection-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .connection-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge-recommended {
+            background: var(--accent-turquoise);
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-weight: 900;
+            padding: 0.25rem 0.6rem;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: var(--turquoise-glow);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 0.75rem;
+            width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            .input-group {
+                flex-direction: column;
+            }
+        }
+
+        .input-field-custom {
+            flex: 1;
             background: var(--bg-input);
             border: 1px solid var(--border-inner);
             color: var(--text-primary);
-            border-radius: 0.85rem;
-            padding: 0.85rem 1.1rem;
+            padding: 0.85rem 1.2rem;
+            border-radius: 12px;
             font-family: monospace;
             font-size: 0.85rem;
             outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
             width: 100%;
-            min-width: 0;
         }
-        .input-field:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18);
-        }
-        .input-field--sm { padding: 0.55rem 0.75rem; font-size: 0.72rem; border-radius: 0.6rem; }
 
-        /* ===================== SCROLLBAR ===================== */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: var(--saffron); border-radius: 10px; }
+        .input-field-custom:focus {
+            border-color: var(--border-card);
+            box-shadow: var(--gold-glow);
+        }
 
-        /* ===================== BUTTONS ===================== */
-        .btn-primary {
-            background: var(--btn-primary-bg);
-            color: #04120f;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-            border: 1px solid rgba(244, 236, 216, 0.2);
-            border-radius: 0.85rem;
-            padding: 0.85rem 1.5rem;
-            font-size: 0.85rem;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .btn-primary:hover {
-            background: var(--btn-primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 14px 28px -8px rgba(212, 175, 55, 0.5);
-            color: #1a0f00;
-        }
-        .btn-secondary {
-            background: var(--btn-secondary-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--border-inner);
-            border-radius: 0.85rem;
-            padding: 0.6rem 1rem;
-            font-size: 0.72rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .btn-secondary:hover {
-            background: var(--btn-secondary-hover);
-            transform: translateY(-2px);
-            border-color: var(--accent-border);
-        }
-        .icon-btn {
-            padding: 0.85rem 1rem;
-            border-radius: 0.85rem;
-            background: var(--btn-secondary-bg);
-            border: 1px solid var(--border-inner);
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-        }
-        .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
-        .icon-btn svg { width: 1.15rem; height: 1.15rem; }
-
-        .text-secondary { color: var(--text-secondary); }
-        .text-muted { color: var(--text-muted); }
-
-        /* ===================== INTEGRATIONS CARD ===================== */
-        .integrations-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 1.5rem;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        .integrations-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.15rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.55rem;
-            margin: 0 0 0.35rem;
-            color: var(--text-primary);
-        }
-        .integrations-title svg { width: 1.15rem; height: 1.15rem; color: var(--turquoise-bright); }
-        .integrations-desc { font-size: 0.75rem; color: var(--text-secondary); margin: 0; }
-
-        .link-panel {
-            padding: 1.4rem 1.5rem;
-            border: 1px solid var(--accent-border);
-            position: relative;
-            overflow: hidden;
-        }
-        .link-panel::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            opacity: 0.12;
-            background: radial-gradient(circle at 100% 0%, var(--saffron) 0%, transparent 45%);
-            pointer-events: none;
-        }
-        .link-panel-inner { position: relative; z-index: 2; }
-        .link-panel-title {
-            font-weight: 700;
-            margin: 0 0 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-            color: var(--text-primary);
-        }
-        .badge-recommended {
-            padding: 0.2rem 0.55rem;
-            border-radius: 0.35rem;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
+        .btn-primary-custom {
+            background: var(--border-card);
+            color: #020308;
+            border: 1px solid var(--border-card);
             font-weight: 800;
-            background: var(--saffron);
-            color: #1a1200;
+            padding: 0.85rem 1.75rem;
+            border-radius: 12px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            box-shadow: var(--gold-glow);
         }
-        .link-panel-desc { font-size: 0.75rem; color: var(--text-secondary); margin: 0 0 1rem; line-height: 1.6; }
-        .link-row { display: flex; flex-direction: column; gap: 0.75rem; width: 100%; }
-        @media (min-width: 640px) { .link-row { flex-direction: row; } }
-        .link-row-buttons { display: flex; gap: 0.5rem; }
 
-        .format-desc { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.6; margin: 0.4rem 0 0.9rem; }
-        .format-grid {
+        .btn-primary-custom:hover {
+            background: #ffffff;
+            border-color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-secondary-custom {
+            background: rgba(14, 27, 61, 0.4);
+            border: 1px solid var(--border-inner);
+            color: var(--text-primary);
+            padding: 0.85rem;
+            border-radius: 12px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: var(--turquoise-glow);
+        }
+
+        .btn-secondary-custom:hover {
+            border-color: var(--border-card);
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--border-card);
+            transform: translateY(-2px);
+        }
+
+        /* Subscription Formats Grid */
+        .formats-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin: 0 0 1rem 0;
+        }
+
+        .formats-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1rem;
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
         }
-        @media (min-width: 768px) { .format-grid { grid-template-columns: 1fr 1fr; } }
-        .format-tile {
-            padding: 1rem;
-            border-radius: 0.9rem;
-            border: 1px solid var(--accent-border);
-            background: rgba(2, 3, 8, 0.35);
+
+        @media (min-width: 650px) {
+            .formats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .format-card {
+            background: var(--bg-card-inner);
+            border: 1px solid var(--border-inner);
+            border-radius: 16px;
+            padding: 1.25rem;
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
+            gap: 0.75rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .format-tile-head { display: flex; justify-content: space-between; align-items: center; }
-        .format-tile-name { font-size: 0.72rem; font-weight: 700; color: var(--text-primary); }
-        .format-chip {
-            font-size: 0.58rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            font-weight: 800;
-            padding: 0.18rem 0.4rem;
-            border-radius: 0.3rem;
-        }
-        .format-chip--raw { background: rgba(99, 102, 241, 0.18); color: #a5b4fc; }
-        .format-chip--base64 { background: rgba(0, 166, 147, 0.2); color: #5eead4; }
-        .format-chip--singbox { background: rgba(212, 175, 55, 0.2); color: #f2d777; }
-        .format-chip--clash { background: rgba(139, 92, 246, 0.2); color: #c4b5fd; }
-        .format-tile-row { display: flex; gap: 0.5rem; }
-        .format-copy-btn {
-            padding: 0.55rem 0.75rem;
-            border-radius: 0.55rem;
-            font-size: 0.68rem;
-            font-weight: 700;
-            color: #04120f;
-            border: none;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: filter 0.2s ease, transform 0.2s ease;
-        }
-        .format-copy-btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
-        .format-copy-btn--indigo { background: #818cf8; }
-        .format-copy-btn--emerald { background: var(--turquoise-bright); }
-        .format-copy-btn--amber { background: var(--saffron); }
-        .format-copy-btn--violet { background: #a78bfa; }
 
-        /* ===================== ONE-CLICK IMPORT ===================== */
+        .format-card:hover {
+            border-color: var(--border-card);
+            box-shadow: var(--gold-glow);
+            transform: translateY(-3px);
+        }
+
+        .format-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .format-name {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .format-tag {
+            font-size: 0.65rem;
+            font-weight: 900;
+            padding: 0.15rem 0.5rem;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        /* One-Click Import Elements */
+        .one-click-section {
+            margin-top: 2rem;
+            border-top: 1px dashed var(--border-inner);
+            padding-top: 2rem;
+        }
+
         .import-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
+            gap: 0.85rem;
         }
-        @media (min-width: 640px) { .import-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (min-width: 1024px) { .import-grid { grid-template-columns: repeat(4, 1fr); } }
-        .app-btn {
+
+        @media (min-width: 600px) {
+            .import-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .import-btn-link {
             background: var(--bg-card-inner);
             border: 1px solid var(--border-inner);
             color: var(--text-primary);
-            border-radius: 0.85rem;
-            padding: 0.85rem;
+            padding: 0.9rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            box-shadow: var(--turquoise-glow);
         }
-        .app-btn svg { width: 1rem; height: 1rem; opacity: 0.5; transition: opacity 0.3s ease; }
-        .app-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 26px -8px rgba(212, 175, 55, 0.35);
-        }
-        .app-btn:hover svg { opacity: 1; }
 
-        .footer-row {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
+        .import-btn-link:hover {
+            border-color: var(--accent-turquoise);
+            background: rgba(0, 166, 147, 0.1);
+            transform: translateY(-3px);
+            box-shadow: var(--turquoise-glow);
+        }
+
+        .advanced-retrieve-row {
+            margin-top: 2.5rem;
             border-top: 1px dashed var(--border-inner);
+            padding-top: 1.5rem;
             display: flex;
-            flex-direction: column;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
             gap: 1rem;
         }
-        @media (min-width: 640px) { .footer-row { flex-direction: row; } }
-        .footer-note { font-size: 0.72rem; color: var(--text-secondary); }
-        .footer-actions { display: flex; gap: 0.5rem; width: 100%; }
-        @media (min-width: 640px) { .footer-actions { width: auto; } }
 
-        /* ===================== QR MODAL ===================== */
-        .modal-overlay {
-            background: var(--modal-bg);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+        .advanced-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Modal custom styling */
+        .modal-overlay-custom {
             position: fixed;
             inset: 0;
-            z-index: 50;
+            background: rgba(2, 3, 8, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 100;
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 1rem;
-            transition: opacity 0.3s ease;
+            padding: 1.5rem;
             opacity: 0;
-        }
-        .modal-overlay.flex { display: flex; }
-        .modal-card {
-            background: var(--modal-card);
-            border: 1px solid var(--border-card);
-            box-shadow: 0 35px 70px -15px rgba(0,0,0,0.7), 0 0 60px -20px rgba(212,175,55,0.3);
-            border-radius: 2rem 2rem 0.8rem 0.8rem;
-            max-width: 24rem;
-            width: 100%;
-            padding: 2rem 1.75rem;
-            position: relative;
-            transform: scale(0.95);
-            transition: transform 0.3s ease;
-        }
-        .modal-close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            padding: 0.5rem;
-            border-radius: 50%;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            color: var(--text-muted);
-            display: flex;
-        }
-        .modal-close-btn:hover { background: rgba(212, 175, 55, 0.1); color: var(--accent); }
-        .modal-close-btn svg { width: 1.5rem; height: 1.5rem; }
-        .modal-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
-            font-weight: 800;
-            margin: 0 0 1.5rem;
-            text-align: center;
-            color: var(--text-primary);
-        }
-        .qr-frame {
-            background: #fff;
-            padding: 1rem;
-            border-radius: 1.4rem;
-            box-shadow: inset 0 0 0 1px rgba(212,175,55,0.4);
-            margin: 0 auto 1.5rem;
-            width: fit-content;
-        }
-        #qr-img { width: 12rem; height: 12rem; display: block; }
-        @media (min-width: 640px) { #qr-img { width: 14rem; height: 14rem; } }
-        #qr-text {
-            font-size: 0.68rem;
-            text-align: center;
-            color: var(--text-secondary);
-            font-family: monospace;
-            word-break: break-all;
-            margin: 0 0 1.5rem;
-            padding: 0.75rem 0.85rem;
-            background: rgba(0,0,0,0.25);
-            border-radius: 0.85rem;
-            border: 1px solid var(--border-inner);
+            transition: opacity 0.3s ease;
         }
 
-        /* ===================== TOAST ===================== */
+        .modal-card-custom {
+            background: var(--bg-card);
+            border: 2px solid var(--border-card);
+            box-shadow: var(--gold-glow);
+            border-radius: 40px;
+            width: 100%;
+            max-width: 420px;
+            padding: 2.5rem 2rem;
+            position: relative;
+            text-align: center;
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-card-custom::before {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border: 1px dashed var(--border-inner);
+            border-radius: 32px;
+            pointer-events: none;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 10;
+        }
+
+        .modal-close-btn:hover {
+            color: var(--border-card);
+        }
+
+        .qr-wrapper {
+            background: #ffffff;
+            padding: 1.25rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--gold-glow);
+        }
+
+        .qr-wrapper img {
+            display: block;
+            width: 200px;
+            height: 200px;
+        }
+
+        .qr-display-text {
+            font-family: monospace;
+            font-size: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: var(--bg-card-inner);
+            border: 1px solid var(--border-inner);
+            border-radius: 12px;
+            color: var(--text-primary);
+            word-break: break-all;
+            margin: 0 0 1.5rem 0;
+        }
+
+        /* Toast notification */
         #toast {
             position: fixed;
-            top: 2rem;
+            bottom: 2.5rem;
             left: 50%;
-            transform: translate(-50%, -1rem);
-            background: var(--lapis-deep);
-            border: 1px solid var(--accent-border);
+            transform: translateX(-50%) translateY(20px);
+            background: rgba(14, 27, 61, 0.95);
+            border: 1px solid var(--border-card);
             color: var(--text-primary);
-            padding: 0.75rem 1.5rem;
-            border-radius: 999px;
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6), 0 0 20px -5px rgba(212,175,55,0.3);
-            font-weight: 700;
-            font-size: 0.85rem;
-            z-index: 50;
-            transition: all 0.3s ease;
-            opacity: 0;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            z-index: 200;
             pointer-events: none;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: var(--gold-glow);
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-        #toast svg { width: 1.25rem; height: 1.25rem; color: var(--turquoise-bright); }
 
-        .fade-in { animation: fadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        /* Generic utilities for Javascript matching */
+        .hidden {
+            display: none !important;
+        }
 
-        .hidden { display: none !important; }
+        .flex {
+            display: flex !important;
+        }
+
+        /* Subtle Fade In Animation on Load */
+        @keyframes customFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: customFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
     </style>
 </head>
 <body class="fade-in">
-    <!-- Cosmic starfield + nebula backdrop -->
-    <div class="cosmos"></div>
 
-    <!-- Rotating astrolabe rings -->
-    <div class="astrolabe-bg">
-        <div class="ring ring--1"></div>
-        <div class="ring ring--2"></div>
-        <div class="ring ring--3"></div>
+    <!-- Theme & Language Top bar -->
+    <div class="toggle-container">
+        <button onclick="toggleTheme()" id="theme-toggle" class="btn-toggle" title="Toggle Theme">
+            <span id="theme-icon">☀️</span>
+            <span id="theme-label"></span>
+        </button>
+        <button onclick="toggleLang()" id="lang-toggle" class="btn-toggle" title="Toggle Language">
+            <span id="lang-icon">🇺🇸</span>
+            <span id="lang-label">EN</span>
+        </button>
     </div>
 
-    <!-- Theme & Language Toggle -->
-    <div class="utility-bar">
-        <div class="controls">
-            <button onclick="toggleTheme()" id="theme-toggle" class="btn-secondary" title="Toggle Theme">
-                <span id="theme-icon">☀️</span>
-                <span id="theme-label"></span>
-            </button>
-            <button onclick="toggleLang()" id="lang-toggle" class="btn-secondary" title="Toggle Language">
-                <span id="lang-icon">🇺🇸</span>
-                <span id="lang-label">EN</span>
-            </button>
+    <!-- Cosmic Header with Grand Celestial Seal -->
+    <header class="celestial-header">
+        <div class="celestial-seal">
+            <div class="celestial-seal-inner">
+                🪐
+            </div>
         </div>
-    </div>
+        <h1 class="logo-text">ZAGROOO</h1>
+    </header>
 
-    <!-- Celestial Imperial Seal -->
-    <div class="imperial-seal">
-        <div class="seal-ring">
-            <h2 class="imperial-title">ZAGROOO</h2>
-        </div>
-        <span class="imperial-subtitle">Court of the Radiant Network</span>
-    </div>
-
-    <!-- Royal Court Layout -->
-    <div class="royal-court">
-
-        <!-- Left Wing / Profile -->
-        <div class="court-wing--left">
-            <!-- Profile Card -->
-            <div class="bento-card profile-card">
-                <div class="profile-halo"></div>
+    <!-- Portal Content Layout (Symmetric Structural Elements) -->
+    <main class="portal-container">
+        
+        <!-- Sidebar Segment -->
+        <section class="column-sidebar">
+            
+            <!-- Profile Mihrab Sanctuary Arch -->
+            <div class="mihrab-card">
                 <div class="profile-avatar">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 44px; height: 44px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                 </div>
-                <h1 class="profile-name">__USER_NAME__</h1>
-                <p class="profile-id">__USER_ID__</p>
-                <div class="status-badge-wrap">
-                    <span id="status-badge"></span>
+                <h2 class="profile-name">__USER_NAME__</h2>
+                <div class="profile-id">__USER_ID__</div>
+                <div class="status-badge-container">
+                    <span id="status-badge" class="status-badge-custom"></span>
                 </div>
             </div>
 
-            <!-- Expiry & General Info -->
-            <div class="bento-card">
-                <h3 class="section-label">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            <!-- Expiration & Telemetry Metrics -->
+            <div class="mihrab-card-sub">
+                <div class="info-label">
+                    <svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     <span data-i18n="expDate">Expiration Date</span>
-                </h3>
-                <span class="expiry-value">__EXPIRY_DATE__</span>
-                <p class="expiry-caption" data-i18n="calendarLocal">Calendar Local Time</p>
-                <hr class="divider-line">
-                <div class="ip-row">
-                    <span class="ip-label">Connection IP</span>
-                    <span class="ip-value" id="client-ip">Detecting...</span>
+                </div>
+                <div style="text-align: center;">
+                    <div class="info-value">__EXPIRY_DATE__</div>
+                    <p class="info-sub" data-i18n="calendarLocal">Calendar Local Time</p>
+                </div>
+                <div class="info-divider"></div>
+                <div class="info-row">
+                    <span class="info-row-label">Connection IP</span>
+                    <span class="info-row-val" id="client-ip">Detecting...</span>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Right Wing / Main Content -->
-        <div class="court-wing--right">
-
-            <!-- Metrics Row -->
-            <div class="metrics-row">
-                <!-- Total Usage -->
-                <div class="bento-card metric-card">
-                    <div class="metric-glow metric-glow--turquoise"></div>
-                    <div class="metric-head">
-                        <p class="section-label" style="margin:0;" data-i18n="totalUsage">Total Usage</p>
-                        <span class="metric-icon-badge">
-                            <svg fill="none" stroke="var(--turquoise-bright)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
-                        </span>
+        <!-- Main Workspace Segment -->
+        <section class="column-main">
+            
+            <!-- Astronomical Gauge Telemetries -->
+            <div class="metrics-grid">
+                
+                <!-- Total Usage Gauge Card -->
+                <div class="mihrab-card-sub" style="text-align: center;">
+                    <div class="info-label">
+                        <svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+                        <span data-i18n="totalUsage">Total Usage</span>
                     </div>
-                    <div class="metric-value-row">
-                        <span class="metric-value">__TOTAL_GB__</span>
-                        <span class="metric-limit">/ __LIMIT_TOTAL_GB__ GB</span>
-                    </div>
-                    <div class="orbital-gauge">
-                        __TOTAL_PROGRESS__
+                    
+                    <div class="astrolabe-gauge">
+                        <div class="astrolabe-ring"></div>
+                        <div class="astrolabe-inner-circle"></div>
+                        <div class="astrolabe-value">__TOTAL_GB__</div>
+                        <div class="astrolabe-limit">/ __LIMIT_TOTAL_GB__ GB</div>
+                        <div class="astrolabe-progress-container">
+                            __TOTAL_PROGRESS__
+                        </div>
                     </div>
                 </div>
 
-                <!-- Daily Usage -->
-                <div class="bento-card metric-card">
-                    <div class="metric-glow metric-glow--saffron"></div>
-                    <div class="metric-head">
-                        <p class="section-label" style="margin:0;" data-i18n="dailyUsage">Daily Usage</p>
-                        <span class="metric-icon-badge">
-                            <svg fill="none" stroke="var(--saffron)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </span>
+                <!-- Daily Usage Gauge Card -->
+                <div class="mihrab-card-sub" style="text-align: center;">
+                    <div class="info-label">
+                        <svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span data-i18n="dailyUsage">Daily Usage</span>
                     </div>
-                    <div class="metric-value-row">
-                        <span class="metric-value">__DAILY_GB__</span>
-                        <span class="metric-limit">/ __LIMIT_DAILY_GB__ GB</span>
-                    </div>
-                    <div class="orbital-gauge">
-                        __DAILY_PROGRESS__
+
+                    <div class="astrolabe-gauge">
+                        <div class="astrolabe-ring"></div>
+                        <div class="astrolabe-inner-circle"></div>
+                        <div class="astrolabe-value">__DAILY_GB__</div>
+                        <div class="astrolabe-limit">/ __LIMIT_DAILY_GB__ GB</div>
+                        <div class="astrolabe-progress-container">
+                            __DAILY_PROGRESS__
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Universal Link Setup -->
-            <div class="bento-card">
-                <div class="integrations-header">
-                    <div>
-                        <h3 class="integrations-title">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
-                            <span data-i18n="integrationTitle">Integration Connections</span>
-                        </h3>
-                        <p class="integrations-desc" data-i18n="integrationDesc">Add your preferred configuration link.</p>
-                    </div>
+            <!-- Connection Integration Terminal -->
+            <div class="mihrab-card-sub">
+                <div class="card-header-main">
+                    <h3 class="card-title">
+                        <svg style="width: 22px; height: 22px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                        <span data-i18n="integrationTitle">Integration Connections</span>
+                    </h3>
+                    <p class="card-subtitle" data-i18n="integrationDesc">Add the correct configuration link based on your preferred format below.</p>
                 </div>
 
-                <div class="bento-inner link-panel">
-                    <div class="link-panel-inner">
-                        <h4 class="link-panel-title">
+                <!-- Universal Sync Connection (Top Segment) -->
+                <div class="primary-connection-box">
+                    <div class="connection-title-row">
+                        <h4 class="connection-title">
                             <span data-i18n="universalLink">Universal Auto-Detecting Link</span>
-                            <span class="badge-recommended">Recommended</span>
                         </h4>
-                        <p class="link-panel-desc" data-i18n="universalDesc">This URL automatically detects your client and delivers the optimal format.</p>
+                        <span class="badge-recommended">Recommended</span>
+                    </div>
+                    <p class="card-subtitle" style="margin-bottom: 1.25rem;" data-i18n="universalDesc">This URL automatically detects your client and delivers the optimal format.</p>
+                    
+                    <div class="input-group">
+                        <input type="text" id="link-normal" value="__SYNC_NORMAL__" readonly class="input-field-custom">
+                        <button onclick="copyLink('link-normal')" class="btn-primary-custom">
+                            <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                            <span data-i18n="copy">Copy</span>
+                        </button>
+                        <button onclick="showQRModal('__SYNC_NORMAL__')" class="btn-secondary-custom">
+                            <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                        </button>
+                    </div>
+                </div>
 
-                        <div class="link-row">
-                            <input type="text" id="link-normal" value="__SYNC_NORMAL__" readonly class="input-field">
-                            <div class="link-row-buttons">
-                                <button onclick="copyLink('link-normal')" class="btn-primary">
-                                    <svg style="width:1rem;height:1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-                                    <span data-i18n="copy">Copy</span>
-                                </button>
-                                <button onclick="showQRModal('__SYNC_NORMAL__')" class="icon-btn">
-                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
-                                </button>
-                            </div>
+                <!-- Formats Explicitly Segment -->
+                <h4 class="formats-title" data-i18n="availableFormats">Available Subscription Formats</h4>
+                <p class="card-subtitle" style="margin-bottom: 1.5rem;" data-i18n="formatsDesc">Use these links to explicitly request specific configuration formats.</p>
+
+                <div class="formats-grid">
+                    
+                    <!-- Raw -->
+                    <div class="format-card">
+                        <div class="format-meta">
+                            <span class="format-name">Raw Configs (Text/URI)</span>
+                            <span class="format-tag" style="background: rgba(99, 102, 241, 0.15); color: #6366f1;">RAW</span>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="link-raw-fmt" readonly class="input-field-custom">
+                            <button onclick="copyLink('link-raw-fmt')" class="btn-primary-custom" style="background: #6366f1; border-color: #6366f1; color: white;">
+                                <span data-i18n="copy">Copy</span>
+                            </button>
+                            <button onclick="showQRModal(document.getElementById('link-raw-fmt').value)" class="btn-secondary-custom">
+                                <svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Base64 -->
+                    <div class="format-card">
+                        <div class="format-meta">
+                            <span class="format-name">Base64 Sub (V2Ray / Shadowrocket)</span>
+                            <span class="format-tag" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">BASE64</span>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="link-base64-fmt" readonly class="input-field-custom">
+                            <button onclick="copyLink('link-base64-fmt')" class="btn-primary-custom" style="background: #10b981; border-color: #10b981; color: white;">
+                                <span data-i18n="copy">Copy</span>
+                            </button>
+                            <button onclick="showQRModal(document.getElementById('link-base64-fmt').value)" class="btn-secondary-custom">
+                                <svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Singbox -->
+                    <div class="format-card">
+                        <div class="format-meta">
+                            <span class="format-name">Sing-box Subscription (JSON)</span>
+                            <span class="format-tag" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">SINGBOX</span>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="link-singbox-fmt" readonly class="input-field-custom">
+                            <button onclick="copyLink('link-singbox-fmt')" class="btn-primary-custom" style="background: #f59e0b; border-color: #f59e0b; color: white;">
+                                <span data-i18n="copy">Copy</span>
+                            </button>
+                            <button onclick="showQRModal(document.getElementById('link-singbox-fmt').value)" class="btn-secondary-custom">
+                                <svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Clash -->
+                    <div class="format-card">
+                        <div class="format-meta">
+                            <span class="format-name">Clash Subscription (YAML)</span>
+                            <span class="format-tag" style="background: rgba(139, 92, 246, 0.15); color: #8b5cf6;">CLASH</span>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="link-clash-fmt" readonly class="input-field-custom">
+                            <button onclick="copyLink('link-clash-fmt')" class="btn-primary-custom" style="background: #8b5cf6; border-color: #8b5cf6; color: white;">
+                                <span data-i18n="copy">Copy</span>
+                            </button>
+                            <button onclick="showQRModal(document.getElementById('link-clash-fmt').value)" class="btn-secondary-custom">
+                                <svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="bento-inner link-panel" style="margin-top:1.5rem;">
-                    <div class="link-panel-inner">
-                        <h4 class="link-panel-title">
-                            <span data-i18n="availableFormats">Available Subscription Formats</span>
-                        </h4>
-                        <p class="format-desc" data-i18n="formatsDesc">Use these links to explicitly request specific configuration formats.</p>
-
-                        <div class="format-grid">
-                            <!-- Raw -->
-                            <div class="format-tile">
-                                <div class="format-tile-head">
-                                    <span class="format-tile-name">Raw Configs (Text/URI)</span>
-                                    <span class="format-chip format-chip--raw">RAW</span>
-                                </div>
-                                <div class="format-tile-row">
-                                    <input type="text" id="link-raw-fmt" readonly class="input-field input-field--sm">
-                                    <button onclick="copyLink('link-raw-fmt')" class="format-copy-btn format-copy-btn--indigo">
-                                        <span data-i18n="copy">Copy</span>
-                                    </button>
-                                    <button onclick="showQRModal(document.getElementById('link-raw-fmt').value)" class="icon-btn" style="padding:0.55rem;">
-                                        <svg style="width:1rem;height:1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Base64 -->
-                            <div class="format-tile">
-                                <div class="format-tile-head">
-                                    <span class="format-tile-name">Base64 Sub (V2Ray / Shadowrocket)</span>
-                                    <span class="format-chip format-chip--base64">BASE64</span>
-                                </div>
-                                <div class="format-tile-row">
-                                    <input type="text" id="link-base64-fmt" readonly class="input-field input-field--sm">
-                                    <button onclick="copyLink('link-base64-fmt')" class="format-copy-btn format-copy-btn--emerald">
-                                        <span data-i18n="copy">Copy</span>
-                                    </button>
-                                    <button onclick="showQRModal(document.getElementById('link-base64-fmt').value)" class="icon-btn" style="padding:0.55rem;">
-                                        <svg style="width:1rem;height:1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Singbox -->
-                            <div class="format-tile">
-                                <div class="format-tile-head">
-                                    <span class="format-tile-name">Sing-box Subscription (JSON)</span>
-                                    <span class="format-chip format-chip--singbox">SINGBOX</span>
-                                </div>
-                                <div class="format-tile-row">
-                                    <input type="text" id="link-singbox-fmt" readonly class="input-field input-field--sm">
-                                    <button onclick="copyLink('link-singbox-fmt')" class="format-copy-btn format-copy-btn--amber">
-                                        <span data-i18n="copy">Copy</span>
-                                    </button>
-                                    <button onclick="showQRModal(document.getElementById('link-singbox-fmt').value)" class="icon-btn" style="padding:0.55rem;">
-                                        <svg style="width:1rem;height:1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Clash -->
-                            <div class="format-tile">
-                                <div class="format-tile-head">
-                                    <span class="format-tile-name">Clash Subscription (YAML)</span>
-                                    <span class="format-chip format-chip--clash">CLASH</span>
-                                </div>
-                                <div class="format-tile-row">
-                                    <input type="text" id="link-clash-fmt" readonly class="input-field input-field--sm">
-                                    <button onclick="copyLink('link-clash-fmt')" class="format-copy-btn format-copy-btn--violet">
-                                        <span data-i18n="copy">Copy</span>
-                                    </button>
-                                    <button onclick="showQRModal(document.getElementById('link-clash-fmt').value)" class="icon-btn" style="padding:0.55rem;">
-                                        <svg style="width:1rem;height:1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="margin-top:2rem;">
-                    <h4 class="section-label">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                <!-- One-Click Import Actions -->
+                <div class="one-click-section">
+                    <div class="info-label" style="justify-content: flex-start; margin-bottom: 1.25rem;">
+                        <svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                         <span data-i18n="oneClickImport">One-Click Import</span>
-                    </h4>
+                    </div>
+
                     <div class="import-grid">
-                        <a id="v2rayng-link" href="v2rayng://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__" class="app-btn">
+                        <a id="v2rayng-link" href="v2rayng://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__" class="import-btn-link">
                             <span>v2rayNG</span>
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            <svg style="width: 14px; height: 14px; opacity: 0.6;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </a>
-                        <a href="v2rayn://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__" class="app-btn">
+                        <a href="v2rayn://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__" class="import-btn-link">
                             <span>v2rayN</span>
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            <svg style="width: 14px; height: 14px; opacity: 0.6;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </a>
-                        <a href="shadowrocket://add/sub://__SYNC_NORMAL_BASE64__?title=__USER_NAME__" class="app-btn">
+                        <a href="shadowrocket://add/sub://__SYNC_NORMAL_BASE64__?title=__USER_NAME__" class="import-btn-link">
                             <span>Shadowrocket</span>
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            <svg style="width: 14px; height: 14px; opacity: 0.6;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </a>
-                        <a href="streisand://import/__SYNC_NORMAL__" class="app-btn">
+                        <a href="streisand://import/__SYNC_NORMAL__" class="import-btn-link">
                             <span>Streisand</span>
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            <svg style="width: 14px; height: 14px; opacity: 0.6;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </a>
                     </div>
                 </div>
 
-                <div class="footer-row">
-                    <div class="footer-note">
-                        Advanced users can retrieve raw config blocks manually.
-                    </div>
-                    <div class="footer-actions">
-                        <button onclick="fetchDecodedRawContent()" class="btn-secondary" style="width:100%;justify-content:center;">
-                            <svg style="width:1rem;height:1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                <!-- Advanced Segment -->
+                <div class="advanced-retrieve-row">
+                    <div class="advanced-text">Advanced users can retrieve raw config blocks manually.</div>
+                    <div>
+                        <button onclick="fetchDecodedRawContent()" class="btn-toggle">
+                            <svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                             <span data-i18n="parsedContent">Retrieve Raw Content</span>
                         </button>
                         <input type="text" id="link-raw" value="__SYNC_RAW__" class="hidden">
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
-    <!-- QR Modal -->
-    <div id="qr-modal" class="modal-overlay">
-        <div class="modal-card">
-            <button onclick="closeQRModal()" class="modal-close-btn">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-            <h3 class="modal-title" id="qr-title">Scan QR Code</h3>
-            <div class="qr-frame">
+    <!-- Unified Astronomical QR Modal -->
+    <div id="qr-modal" class="modal-overlay-custom">
+        <div class="modal-card-custom">
+            <button onclick="closeQRModal()" class="modal-close-btn">&times;</button>
+            <h3 id="qr-title" class="card-title" style="justify-content: center; margin-bottom: 1.5rem;">Scan QR Code</h3>
+            <div class="qr-wrapper">
                 <img id="qr-img" src="" alt="QR Code">
             </div>
-            <p id="qr-text"></p>
-            <button onclick="closeQRModal()" class="btn-primary" style="width:100%;" data-i18n="close">Close</button>
+            <p id="qr-text" class="qr-display-text"></p>
+            <button onclick="closeQRModal()" class="btn-primary-custom" style="width: 100%;" data-i18n="close">Close</button>
         </div>
     </div>
 
-    <!-- Toast Notification -->
+    <!-- Cosmic Toast Notification -->
     <div id="toast">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <svg style="width: 20px; height: 20px; color: var(--accent-turquoise);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
         <span>Notification</span>
     </div>
 
     <script>
-
         const I18N = {
             en: {
                 totalUsage: 'Total Usage',
@@ -1317,14 +1258,14 @@
             // Animation
             setTimeout(() => {
                 modal.style.opacity = '1';
-                modal.querySelector('.modal-card').style.transform = 'scale(1)';
+                modal.querySelector('.modal-card-custom').style.transform = 'scale(1)';
             }, 10);
         }
 
         function closeQRModal() {
             const modal = document.getElementById('qr-modal');
             modal.style.opacity = '0';
-            modal.querySelector('.modal-card').style.transform = 'scale(0.95)';
+            modal.querySelector('.modal-card-custom').style.transform = 'scale(0.95)';
             
             setTimeout(() => {
                 modal.classList.add('hidden');
@@ -1334,16 +1275,15 @@
 
         function showToast(msg) {
             const t = document.getElementById('toast');
-            t.innerText = msg;
+            t.querySelector('span').innerText = msg;
             t.style.opacity = '1';
             t.style.transform = 'translate(-50%, 0)';
             setTimeout(() => { 
                 t.style.opacity = '0'; 
-                t.style.transform = 'translate(-50%, 16px)';
+                t.style.transform = 'translate(-50%, 20px)';
             }, 2500);
         }
 
-        
         // Fetch Client IP
         fetch('https://api.ipify.org?format=json')
             .then(r => r.json())
@@ -1393,7 +1333,6 @@
             if (singboxInput) singboxInput.value = normalLink + (normalLink.includes('?') ? '&flag=singbox' : '?flag=singbox');
             if (clashInput) clashInput.value = normalLink + (normalLink.includes('?') ? '&flag=clash' : '?flag=clash');
         })();
-    
-</script>
+    </script>
 </body>
 </html>
