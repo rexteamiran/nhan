@@ -17,13 +17,13 @@
                     },
                     colors: {
                         dark: {
-                            900: '#0b0f19',
-                            800: '#111827',
-                            700: '#1f2937',
+                            900: '#060b18',
+                            800: '#0b1427',
+                            700: '#121e38',
                         },
                         brand: {
-                            500: '#6366f1',
-                            600: '#4f46e5',
+                            500: '#00a693',
+                            600: '#1c39bb',
                         }
                     }
                 }
@@ -32,93 +32,154 @@
     </script>
     <style>
         :root {
-            --bg-primary: #f3f4f6;
-            --bg-card: #ffffff;
-            --bg-card-inner: #f9fafb;
-            --bg-input: #f3f4f6;
-            --border-card: #e5e7eb;
-            --border-inner: #e5e7eb;
-            --text-primary: #111827;
-            --text-secondary: #4b5563;
-            --text-muted: #9ca3af;
-            --accent: #6366f1;
-            --accent-light: #e0e7ff;
-            --accent-border: #c7d2fe;
-            --accent-hover: #4f46e5;
+            /* Warm parchment inspired by ancient Persian manuscripts */
+            --bg-primary: #faf8f5;
+            --bg-card: rgba(255, 255, 255, 0.88);
+            --bg-card-inner: #f3efe6;
+            --bg-input: #ffffff;
+            --border-card: rgba(0, 166, 147, 0.18);
+            --border-inner: rgba(28, 57, 187, 0.1);
+            --text-primary: #111625;
+            --text-secondary: #1c39bb;
+            --text-muted: #687cb4;
+            --accent: #00a693; /* Persian Turquoise */
+            --accent-light: rgba(0, 166, 147, 0.1);
+            --accent-border: rgba(0, 166, 147, 0.25);
+            --accent-hover: #1c39bb; /* Persian Lapis Blue */
             --green-bg: #d1fae5;
             --green-border: #a7f3d0;
-            --green-text: #059669;
+            --green-text: #00a693;
             --amber-bg: #fef3c7;
             --amber-border: #fde68a;
             --amber-text: #d97706;
             --red-bg: #fee2e2;
             --red-border: #fecaca;
             --red-text: #dc2626;
-            --progress-bg: #e5e7eb;
-            --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
-            --btn-primary-bg: #6366f1;
-            --btn-primary-hover: #4f46e5;
-            --btn-secondary-bg: #f3f4f6;
-            --btn-secondary-hover: #e5e7eb;
-            --modal-bg: rgba(0,0,0,0.5);
+            --progress-bg: #eae6db;
+            --shadow-card: 0 12px 30px -10px rgba(0, 166, 147, 0.12);
+            --btn-primary-bg: #00a693;
+            --btn-primary-hover: #1c39bb;
+            --btn-secondary-bg: #f3efe6;
+            --btn-secondary-hover: #eae2d0;
+            --modal-bg: rgba(11, 20, 39, 0.4);
             --modal-card: #ffffff;
         }
 
         .dark {
-            --bg-primary: #0b0f19;
-            --bg-card: rgba(17, 24, 39, 0.7);
-            --bg-card-inner: rgba(31, 41, 55, 0.5);
-            --bg-input: #111827;
-            --border-card: rgba(99, 102, 241, 0.15);
-            --border-inner: rgba(99, 102, 241, 0.1);
-            --text-primary: #f9fafb;
-            --text-secondary: #9ca3af;
-            --text-muted: #6b7280;
-            --accent: #818cf8;
-            --accent-light: rgba(99, 102, 241, 0.15);
-            --accent-border: rgba(99, 102, 241, 0.3);
-            --accent-hover: #6366f1;
-            --green-bg: rgba(16, 185, 129, 0.1);
-            --green-border: rgba(16, 185, 129, 0.2);
+            /* Celestial Lapis Blue Midnight Dome */
+            --bg-primary: #060b18;
+            --bg-card: rgba(11, 20, 39, 0.75);
+            --bg-card-inner: rgba(18, 30, 56, 0.5);
+            --bg-input: #090d19;
+            --border-card: rgba(0, 166, 147, 0.25); /* Persian Green/Turquoise */
+            --border-inner: rgba(242, 196, 100, 0.15); /* Saffron Gold */
+            --text-primary: #f3f4f6;
+            --text-secondary: #93c5fd; /* Soft sky blue */
+            --text-muted: #64748b;
+            --accent: #00a693; /* Persian Turquoise */
+            --accent-light: rgba(0, 166, 147, 0.15);
+            --accent-border: rgba(242, 196, 100, 0.35); /* Saffron Gold */
+            --accent-hover: #f2c464; /* Radiant Saffron Gold */
+            --green-bg: rgba(0, 166, 147, 0.1);
+            --green-border: rgba(0, 166, 147, 0.2);
             --green-text: #34d399;
-            --amber-bg: rgba(245, 158, 11, 0.1);
-            --amber-border: rgba(245, 158, 11, 0.2);
-            --amber-text: #fbbf24;
+            --amber-bg: rgba(242, 196, 100, 0.1);
+            --amber-border: rgba(242, 196, 100, 0.2);
+            --amber-text: #f2c464;
             --red-bg: rgba(239, 68, 68, 0.1);
             --red-border: rgba(239, 68, 68, 0.2);
             --red-text: #f87171;
-            --progress-bg: rgba(31, 41, 55, 0.8);
-            --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
-            --btn-primary-bg: #6366f1;
-            --btn-primary-hover: #4f46e5;
-            --btn-secondary-bg: rgba(31, 41, 55, 0.6);
-            --btn-secondary-hover: rgba(55, 65, 81, 0.8);
-            --modal-bg: rgba(0,0,0,0.8);
-            --modal-card: #1f2937;
+            --progress-bg: rgba(18, 30, 56, 0.8);
+            --shadow-card: 0 25px 50px -12px rgba(0, 0, 0, 0.65), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+            --btn-primary-bg: #00a693;
+            --btn-primary-hover: #1c39bb;
+            --btn-secondary-bg: rgba(18, 30, 56, 0.6);
+            --btn-secondary-hover: rgba(28, 45, 82, 0.8);
+            --modal-bg: rgba(3, 5, 12, 0.9);
+            --modal-card: #0c1223;
         }
 
         body {
             font-family: 'Inter', 'Vazirmatn', sans-serif;
             background: var(--bg-primary) !important;
+            /* Delicate Persian Geometric Dot Grid */
+            background-image: radial-gradient(var(--border-card) 1px, transparent 1px);
+            background-size: 24px 24px;
             color: var(--text-primary);
             transition: background 0.3s, color 0.3s;
             -webkit-font-smoothing: antialiased;
         }
         [lang="fa"] body { font-family: 'Vazirmatn', sans-serif; }
         
+        /* Glorious ZAGROOO Header - Styled with Persian Saffron & Lapis Lazuli */
+        body::before {
+            content: "ZAGROOO";
+            display: block;
+            width: 100%;
+            max-width: 1152px;
+            margin: 1.5rem auto 2.5rem auto;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 900;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #1c39bb, #00a693, #f2c464, #1c39bb);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: persianFlow 8s ease infinite;
+            z-index: 50;
+            position: relative;
+            filter: drop-shadow(0 2px 12px rgba(0, 166, 147, 0.3));
+        }
+
+        @keyframes persianFlow {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        /* Traditional Iranian Tile Outline (کادربندی اسلیمی مینی‌مال) */
         .bento-card {
             background: var(--bg-card) !important;
             border: 1px solid var(--border-card) !important;
             box-shadow: var(--shadow-card) !important;
             border-radius: 1.5rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            inset: 5px;
+            border: 1px dashed var(--accent-border);
+            border-radius: 1.25rem;
+            opacity: 0.35;
+            pointer-events: none;
+            transition: opacity 0.3s, border-color 0.3s;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent) !important;
+            box-shadow: 0 20px 40px -10px rgba(0, 166, 147, 0.25) !important;
+        }
+
+        .bento-card:hover::before {
+            opacity: 0.8;
+            border-color: var(--accent);
+            border-style: solid;
         }
         
         .bento-inner {
             background: var(--bg-card-inner);
             border: 1px solid var(--border-inner);
-            border-radius: 1rem;
+            border-radius: 1.15rem;
             transition: all 0.3s;
         }
 
@@ -126,43 +187,99 @@
             background: var(--bg-input);
             border: 1px solid var(--border-inner);
             color: var(--text-primary);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .input-field:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 166, 147, 0.15);
         }
 
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
         
-        .btn-primary { background: var(--btn-primary-bg); color: white; transition: all 0.2s ease; }
-        .btn-primary:hover { background: var(--btn-primary-hover); transform: translateY(-1px); }
-        .btn-secondary { background: var(--btn-secondary-bg); color: var(--text-primary); border: 1px solid var(--border-inner); transition: all 0.2s ease; }
-        .btn-secondary:hover { background: var(--btn-secondary-hover); transform: translateY(-1px); }
+        .btn-primary { 
+            background: var(--btn-primary-bg); 
+            color: white; 
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .btn-primary:hover { 
+            background: var(--btn-primary-hover); 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 20px -5px rgba(28, 57, 187, 0.4);
+        }
+        .btn-secondary { 
+            background: var(--btn-secondary-bg); 
+            color: var(--text-primary); 
+            border: 1px solid var(--border-inner); 
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+        .btn-secondary:hover { 
+            background: var(--btn-secondary-hover); 
+            transform: translateY(-2px); 
+            border-color: var(--accent-border);
+        }
         .text-secondary { color: var(--text-secondary); }
         .text-muted { color: var(--text-muted); }
-        .progress-bar-bg { background: var(--progress-bg); }
+        .progress-bar-bg { background: var(--progress-bg); border-radius: 9999px; overflow: hidden; }
         
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .fade-in { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         
-        .modal-overlay { background: var(--modal-bg); backdrop-filter: blur(8px); }
-        .modal-card { background: var(--modal-card); border: 1px solid var(--border-card); }
+        .modal-overlay { background: var(--modal-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .modal-card { 
+            background: var(--modal-card); 
+            border: 1px solid var(--border-card); 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border-radius: 2rem;
+        }
         
         .app-btn {
             background: var(--bg-card-inner);
             border: 1px solid var(--border-inner);
             color: var(--text-primary);
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
-        .app-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+        .app-btn:hover { 
+            border-color: var(--accent); 
+            color: var(--accent); 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 20px -6px rgba(0, 166, 147, 0.2);
+        }
         
+        /* High-fidelity Persian Blue & Turquoise Ambient Glows */
         .glow-effect {
             position: absolute;
-            width: 150px;
-            height: 150px;
-            background: var(--accent);
-            filter: blur(80px);
-            opacity: 0.15;
+            width: 350px;
+            height: 350px;
+            background: #1c39bb !important; /* Lapis Lazuli */
+            filter: blur(140px);
+            opacity: 0.12;
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
+            transition: background 0.3s;
+        }
+        .glow-effect:last-of-type {
+            background: #00a693 !important; /* Persian Turquoise */
+        }
+
+        /* Force-override Tailwind color structures to integrate beautifully with Persian colors */
+        .bg-indigo-500 {
+            background-color: var(--accent) !important;
+        }
+        .text-indigo-500 {
+            color: var(--accent) !important;
+        }
+        .bg-emerald-500 {
+            background-color: #00a693 !important;
+        }
+        .text-emerald-500 {
+            color: #00a693 !important;
+        }
+        .bg-violet-500 {
+            background-color: var(--accent-hover) !important;
         }
     </style>
 </head>
