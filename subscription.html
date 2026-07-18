@@ -15,6 +15,7 @@
            ========================================================== */
 
         :root {
+            /* ---- DARK THEME (default) ---- */
             --void: #030309;
             --night-1: #070b1e;
             --night-2: #0b1330;
@@ -31,9 +32,10 @@
 
             --card-face: linear-gradient(155deg, #0d1530 0%, #070b1c 55%, #050813 100%);
             --card-line: rgba(212, 175, 55, 0.4);
-            --card-line-soft: rgba(0, 166, 147, 0.28);
+            --card-line-soft: rgba(0, 166, 147, 0.3);
             --field-bg: rgba(2, 4, 12, 0.55);
             --panel-inset: rgba(1, 2, 8, 0.4);
+            --sky-star-opacity: 0.8;
 
             --green-bg: rgba(0, 166, 147, 0.16);
             --green-border: rgba(43, 227, 204, 0.4);
@@ -48,14 +50,40 @@
             --footer-bg: rgba(3, 3, 9, 0.88);
         }
 
+        /* ---- LIGHT THEME: true ivory/cream day court ---- */
         html:not(.dark) {
-            --void: #0c1330;
-            --night-1: #131e48;
-            --night-2: #0a1230;
-            --card-face: linear-gradient(155deg, #182752 0%, #0e1738 55%, #0a1230 100%);
-            --ink: #fbf6e6;
-            --ink-dim: #ccd5f5;
-            --footer-bg: rgba(10, 15, 38, 0.9);
+            --void: #f7f1e1;
+            --night-1: #efe6cd;
+            --night-2: #f9f4e6;
+            --lapis: #17235a;
+            --lapis-bright: #24358c;
+            --gold: #a97e15;
+            --gold-bright: #c99a25;
+            --gold-dim: #7a5a10;
+            --jade: #017a6a;
+            --jade-bright: #049380;
+            --ink: #211a08;
+            --ink-dim: #4a4128;
+            --ink-faint: #8a7d54;
+
+            --card-face: linear-gradient(155deg, #fffdf7 0%, #fbf3dd 55%, #f5ecd2 100%);
+            --card-line: rgba(169, 126, 21, 0.45);
+            --card-line-soft: rgba(1, 122, 106, 0.3);
+            --field-bg: rgba(255, 255, 255, 0.75);
+            --panel-inset: rgba(255, 255, 255, 0.5);
+            --sky-star-opacity: 0.18;
+
+            --green-bg: rgba(1, 122, 106, 0.12);
+            --green-border: rgba(1, 122, 106, 0.4);
+            --green-text: #016455;
+            --amber-bg: rgba(169, 126, 21, 0.14);
+            --amber-border: rgba(169, 126, 21, 0.4);
+            --amber-text: #7a5a10;
+            --red-bg: rgba(179, 38, 38, 0.12);
+            --red-border: rgba(179, 38, 38, 0.4);
+            --red-text: #a12a2a;
+
+            --footer-bg: rgba(247, 241, 225, 0.92);
         }
 
         * { box-sizing: border-box; }
@@ -70,8 +98,20 @@
             position: relative;
             overflow-x: hidden;
             padding-bottom: 5.5rem; /* room for sticky footer */
+            transition: background 0.5s ease, color 0.5s ease;
         }
         [lang="fa"] body { font-family: 'Vazirmatn', sans-serif; }
+        [lang="fa"] .medal-name,
+        [lang="fa"] .dial-value,
+        [lang="fa"] .medal-meta-value,
+        [lang="fa"] .medal-back-title,
+        [lang="fa"] .modal-title,
+        [lang="fa"] .seal-sub,
+        [lang="fa"] .dial-kicker,
+        [lang="fa"] .medal-meta-label,
+        [lang="fa"] .colonnade-label {
+            font-family: 'Vazirmatn', sans-serif;
+        }
 
         /* ---------- cosmic backdrop ---------- */
         .sky {
@@ -82,25 +122,34 @@
             background:
                 radial-gradient(1000px 650px at 50% -8%, rgba(212,175,55,0.13), transparent 60%),
                 radial-gradient(800px 550px at 4% 40%, rgba(0,166,147,0.11), transparent 55%),
-                radial-gradient(800px 650px at 98% 75%, rgba(28,47,114,0.55), transparent 55%),
+                radial-gradient(800px 650px at 98% 75%, rgba(28,47,114,0.22), transparent 55%),
+                linear-gradient(180deg, var(--night-2) 0%, var(--night-1) 45%, var(--void) 100%);
+            transition: background 0.5s ease;
+        }
+        html:not(.dark) .sky {
+            background:
+                radial-gradient(1000px 650px at 50% -8%, rgba(169,126,21,0.14), transparent 60%),
+                radial-gradient(800px 550px at 4% 40%, rgba(1,122,106,0.1), transparent 55%),
+                radial-gradient(800px 650px at 98% 75%, rgba(23,35,90,0.06), transparent 55%),
                 linear-gradient(180deg, var(--night-2) 0%, var(--night-1) 45%, var(--void) 100%);
         }
         .sky .stars, .sky .stars-2 {
             position: absolute; inset: 0;
             background-repeat: repeat;
             background-image:
-                radial-gradient(1.3px 1.3px at 12% 18%, #f6efd9, transparent),
-                radial-gradient(1px 1px at 32% 62%, #f6efd9, transparent),
+                radial-gradient(1.3px 1.3px at 12% 18%, var(--ink), transparent),
+                radial-gradient(1px 1px at 32% 62%, var(--ink), transparent),
                 radial-gradient(1.6px 1.6px at 52% 12%, var(--gold-bright), transparent),
-                radial-gradient(1px 1px at 70% 40%, #f6efd9, transparent),
+                radial-gradient(1px 1px at 70% 40%, var(--ink), transparent),
                 radial-gradient(1.8px 1.8px at 84% 78%, var(--jade-bright), transparent),
-                radial-gradient(1px 1px at 92% 22%, #f6efd9, transparent),
+                radial-gradient(1px 1px at 92% 22%, var(--ink), transparent),
                 radial-gradient(1.3px 1.3px at 20% 85%, var(--gold-bright), transparent),
-                radial-gradient(1px 1px at 60% 90%, #f6efd9, transparent);
+                radial-gradient(1px 1px at 60% 90%, var(--ink), transparent);
             background-size: 420px 420px;
-            opacity: 0.8;
+            opacity: var(--sky-star-opacity);
+            transition: opacity 0.5s ease;
         }
-        .sky .stars-2 { background-size: 260px 260px; opacity: 0.35; animation: driftSky 150s linear infinite; }
+        .sky .stars-2 { background-size: 260px 260px; opacity: calc(var(--sky-star-opacity) * 0.45); animation: driftSky 150s linear infinite; }
         .sky .stars { animation: driftSky 230s linear infinite reverse; }
         @keyframes driftSky { to { background-position: 500px 500px; } }
 
@@ -299,18 +348,21 @@
             margin: 0 0 0.7rem;
         }
         .dial {
-            width: 118px;
-            height: 118px;
+            width: 132px;
+            height: 132px;
             border-radius: 50%;
             position: relative;
             margin-bottom: 0.9rem;
-            background: repeating-conic-gradient(from 0deg, rgba(212,175,55,0.55) 0deg 1.3deg, transparent 1.3deg 9deg);
+            padding: 9px;
+            background: repeating-conic-gradient(from 0deg, rgba(212,175,55,0.6) 0deg 1.3deg, transparent 1.3deg 9deg);
             -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #000 calc(100% - 7px));
             mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #000 calc(100% - 7px));
+            display: flex;
         }
         .dial-core {
-            position: absolute;
-            inset: 10px;
+            position: relative;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             background: radial-gradient(circle at 35% 28%, rgba(212,175,55,0.16), transparent 60%), var(--panel-inset);
             border: 1px solid var(--card-line-soft);
@@ -320,18 +372,29 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            padding: 0.4rem;
+            text-align: center;
         }
         .dial-core::before {
             content: "";
             position: absolute;
-            inset: -10px;
+            inset: -9px;
             border-radius: 50%;
             border: 1px dashed rgba(212,175,55,0.3);
             animation: spinRing 55s linear infinite;
+            pointer-events: none;
         }
         @keyframes spinRing { to { transform: rotate(360deg); } }
-        .dial-value { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 800; color: var(--ink); line-height: 1; }
-        .dial-limit { font-size: 0.58rem; color: var(--ink-faint); margin-top: 0.22rem; }
+        .dial-value {
+            font-family: 'Cinzel', 'Vazirmatn', serif;
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--ink);
+            line-height: 1.15;
+            max-width: 92px;
+            word-break: break-word;
+        }
+        .dial-limit { font-size: 0.6rem; color: var(--ink-faint); margin-top: 0.3rem; white-space: nowrap; }
 
         .arc-track {
             width: 100%;
@@ -700,9 +763,10 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 480px) {
-            .medal { min-height: 620px; }
-            .dial { width: 100px; height: 100px; }
-            .dial-pair { gap: 1rem; }
+            .medal { min-height: 640px; }
+            .dial { width: 112px; height: 112px; }
+            .dial-value { font-size: 0.92rem; max-width: 80px; }
+            .dial-pair { gap: 0.85rem; }
         }
     </style>
 </head>
