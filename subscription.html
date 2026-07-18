@@ -4,38 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>__USER_NAME__ - Subscriber Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&family=Cinzel:wght@400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         /* ==========================================================
-           SHAH-PASAND · مدال سلطنتی (Royal Medal Card)
-           A single large ID-medal at the center of the page. Front:
-           identity + status + two usage dials. Back: all links and
-           one-click import. The whole card flips in 3D on click.
+           SHAH-PASAND · دیوان شبکه (Grid Court)
+           A profile crown across the top, then a clean card-grid
+           dashboard beneath it: two thermometer usage gauges, an
+           expiry/IP tile, and integration link cards. No flip/3D.
            Sticky footer bar hosts theme/lang toggles.
            ========================================================== */
 
         :root {
-            /* ---- DARK THEME (default) ---- */
-            --void: #030309;
-            --night-1: #070b1e;
-            --night-2: #0b1330;
-            --lapis: #101d42;
-            --lapis-bright: #1c2f72;
+            /* ---- DARK THEME ---- */
+            --void: #05060d;
+            --night-1: #0a0e22;
+            --night-2: #0d1330;
+            --lapis: #131f4a;
+            --lapis-bright: #223580;
             --gold: #d4af37;
             --gold-bright: #f3d576;
             --gold-dim: #8a6f22;
             --jade: #00a693;
             --jade-bright: #2be3cc;
-            --ink: #f6efd9;
-            --ink-dim: #b9c2e6;
-            --ink-faint: #6b74a0;
+            --ink: #f5efdc;
+            --ink-dim: #b7c0e4;
+            --ink-faint: #6c76a3;
 
-            --card-face: linear-gradient(155deg, #0d1530 0%, #070b1c 55%, #050813 100%);
-            --card-line: rgba(212, 175, 55, 0.4);
-            --card-line-soft: rgba(0, 166, 147, 0.3);
+            --surface: rgba(13, 19, 43, 0.6);
+            --surface-strong: rgba(13, 19, 43, 0.85);
+            --surface-inset: rgba(2, 4, 12, 0.5);
             --field-bg: rgba(2, 4, 12, 0.55);
-            --panel-inset: rgba(1, 2, 8, 0.4);
-            --sky-star-opacity: 0.8;
+            --line: rgba(212, 175, 55, 0.35);
+            --line-soft: rgba(0, 166, 147, 0.28);
+            --sky-star-opacity: 0.75;
 
             --green-bg: rgba(0, 166, 147, 0.16);
             --green-border: rgba(43, 227, 204, 0.4);
@@ -47,10 +48,11 @@
             --red-border: rgba(240, 110, 110, 0.4);
             --red-text: #f08787;
 
-            --footer-bg: rgba(3, 3, 9, 0.88);
+            --footer-bg: rgba(4, 5, 12, 0.9);
+            --shadow-card: 0 30px 70px -25px rgba(0,0,0,0.8);
         }
 
-        /* ---- LIGHT THEME: true ivory/cream day court ---- */
+        /* ---- LIGHT THEME: true ivory day court ---- */
         html:not(.dark) {
             --void: #f7f1e1;
             --night-1: #efe6cd;
@@ -66,12 +68,13 @@
             --ink-dim: #4a4128;
             --ink-faint: #8a7d54;
 
-            --card-face: linear-gradient(155deg, #fffdf7 0%, #fbf3dd 55%, #f5ecd2 100%);
-            --card-line: rgba(169, 126, 21, 0.45);
-            --card-line-soft: rgba(1, 122, 106, 0.3);
-            --field-bg: rgba(255, 255, 255, 0.75);
-            --panel-inset: rgba(255, 255, 255, 0.5);
-            --sky-star-opacity: 0.18;
+            --surface: rgba(255, 255, 255, 0.7);
+            --surface-strong: rgba(255, 255, 255, 0.88);
+            --surface-inset: rgba(255, 255, 255, 0.5);
+            --field-bg: rgba(255, 255, 255, 0.8);
+            --line: rgba(169, 126, 21, 0.45);
+            --line-soft: rgba(1, 122, 106, 0.32);
+            --sky-star-opacity: 0.15;
 
             --green-bg: rgba(1, 122, 106, 0.12);
             --green-border: rgba(1, 122, 106, 0.4);
@@ -84,6 +87,7 @@
             --red-text: #a12a2a;
 
             --footer-bg: rgba(247, 241, 225, 0.92);
+            --shadow-card: 0 25px 55px -25px rgba(80,60,10,0.35);
         }
 
         * { box-sizing: border-box; }
@@ -97,19 +101,16 @@
             -webkit-font-smoothing: antialiased;
             position: relative;
             overflow-x: hidden;
-            padding-bottom: 5.5rem; /* room for sticky footer */
+            padding-bottom: 5.25rem;
             transition: background 0.5s ease, color 0.5s ease;
         }
         [lang="fa"] body { font-family: 'Vazirmatn', sans-serif; }
-        [lang="fa"] .medal-name,
-        [lang="fa"] .dial-value,
-        [lang="fa"] .medal-meta-value,
-        [lang="fa"] .medal-back-title,
-        [lang="fa"] .modal-title,
-        [lang="fa"] .seal-sub,
-        [lang="fa"] .dial-kicker,
-        [lang="fa"] .medal-meta-label,
-        [lang="fa"] .colonnade-label {
+        [lang="fa"] .seal-title,
+        [lang="fa"] .profile-name,
+        [lang="fa"] .stat-value,
+        [lang="fa"] .thermo-value,
+        [lang="fa"] .card-title,
+        [lang="fa"] .modal-title {
             font-family: 'Vazirmatn', sans-serif;
         }
 
@@ -120,20 +121,20 @@
             z-index: 0;
             pointer-events: none;
             background:
-                radial-gradient(1000px 650px at 50% -8%, rgba(212,175,55,0.13), transparent 60%),
-                radial-gradient(800px 550px at 4% 40%, rgba(0,166,147,0.11), transparent 55%),
-                radial-gradient(800px 650px at 98% 75%, rgba(28,47,114,0.22), transparent 55%),
-                linear-gradient(180deg, var(--night-2) 0%, var(--night-1) 45%, var(--void) 100%);
+                radial-gradient(1000px 620px at 50% -10%, rgba(212,175,55,0.12), transparent 60%),
+                radial-gradient(800px 550px at 2% 30%, rgba(0,166,147,0.1), transparent 55%),
+                radial-gradient(800px 650px at 100% 80%, rgba(28,47,114,0.4), transparent 55%),
+                linear-gradient(180deg, var(--night-2) 0%, var(--night-1) 40%, var(--void) 100%);
             transition: background 0.5s ease;
         }
         html:not(.dark) .sky {
             background:
-                radial-gradient(1000px 650px at 50% -8%, rgba(169,126,21,0.14), transparent 60%),
-                radial-gradient(800px 550px at 4% 40%, rgba(1,122,106,0.1), transparent 55%),
-                radial-gradient(800px 650px at 98% 75%, rgba(23,35,90,0.06), transparent 55%),
-                linear-gradient(180deg, var(--night-2) 0%, var(--night-1) 45%, var(--void) 100%);
+                radial-gradient(1000px 620px at 50% -10%, rgba(169,126,21,0.13), transparent 60%),
+                radial-gradient(800px 550px at 2% 30%, rgba(1,122,106,0.08), transparent 55%),
+                radial-gradient(800px 650px at 100% 80%, rgba(23,35,90,0.05), transparent 55%),
+                linear-gradient(180deg, var(--night-2) 0%, var(--night-1) 40%, var(--void) 100%);
         }
-        .sky .stars, .sky .stars-2 {
+        .sky .stars {
             position: absolute; inset: 0;
             background-repeat: repeat;
             background-image:
@@ -147,339 +148,295 @@
                 radial-gradient(1px 1px at 60% 90%, var(--ink), transparent);
             background-size: 420px 420px;
             opacity: var(--sky-star-opacity);
-            transition: opacity 0.5s ease;
+            animation: driftSky 220s linear infinite reverse;
         }
-        .sky .stars-2 { background-size: 260px 260px; opacity: calc(var(--sky-star-opacity) * 0.45); animation: driftSky 150s linear infinite; }
-        .sky .stars { animation: driftSky 230s linear infinite reverse; }
         @keyframes driftSky { to { background-position: 500px 500px; } }
 
-        /* ---------- header seal ---------- */
+        /* ==========================================================
+           HEADER SEAL
+           ========================================================== */
         .court-header {
             position: relative;
             z-index: 4;
-            padding: 3rem 1.5rem 1.75rem;
+            padding: 2.75rem 1.5rem 1.5rem;
             text-align: center;
         }
-        .seal-emblem { width: 54px; height: 54px; margin: 0 auto 0.9rem; }
+        .seal-emblem { width: 48px; height: 48px; margin: 0 auto 0.75rem; }
         .seal-emblem svg { width: 100%; height: 100%; }
         .seal-title {
-            font-family: 'Cinzel Decorative', 'Cinzel', serif;
-            font-weight: 700;
-            font-size: clamp(1.9rem, 5.5vw, 3.1rem);
-            letter-spacing: 0.3em;
-            text-indent: 0.3em;
+            font-family: 'Cinzel', serif;
+            font-weight: 800;
+            font-size: clamp(1.7rem, 5vw, 2.7rem);
+            letter-spacing: 0.28em;
+            text-indent: 0.28em;
             text-transform: uppercase;
             margin: 0;
             line-height: 1;
-            background: linear-gradient(96deg, var(--gold-dim) 0%, var(--gold-bright) 22%, var(--ink) 45%, var(--jade-bright) 60%, var(--gold-bright) 82%, var(--gold-dim) 100%);
+            background: linear-gradient(96deg, var(--gold-dim) 0%, var(--gold-bright) 25%, var(--ink) 48%, var(--jade-bright) 62%, var(--gold-bright) 85%, var(--gold-dim) 100%);
             background-size: 240% auto;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: sealSheen 9s ease-in-out infinite;
-            filter: drop-shadow(0 0 20px rgba(212,175,55,0.28));
+            filter: drop-shadow(0 0 16px rgba(212,175,55,0.25));
         }
         @keyframes sealSheen {
-            0%, 100% { background-position: 0% 50%; filter: drop-shadow(0 0 14px rgba(212,175,55,0.26)); }
-            50% { background-position: 100% 50%; filter: drop-shadow(0 0 28px rgba(0,166,147,0.32)); }
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         .seal-sub {
             display: block;
-            margin-top: 0.7rem;
+            margin-top: 0.55rem;
             font-family: 'EB Garamond', serif;
             font-style: italic;
-            font-size: 0.85rem;
-            letter-spacing: 0.24em;
+            font-size: 0.82rem;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
             color: var(--ink-dim);
         }
-        .flip-hint {
-            display: block;
-            margin-top: 0.55rem;
-            font-size: 0.68rem;
-            color: var(--ink-faint);
-            letter-spacing: 0.04em;
-        }
 
         /* ==========================================================
-           THE MEDAL — 3D flip card stage
+           DASHBOARD GRID
            ========================================================== */
-        .medal-stage {
+        .dashboard {
             position: relative;
             z-index: 4;
-            width: 100%;
-            max-width: 620px;
+            max-width: 1080px;
             margin: 0 auto;
-            padding: 0 1.25rem;
-            perspective: 2200px;
+            padding: 0.5rem 1.5rem 3rem;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.4rem;
         }
-        .medal {
-            position: relative;
-            width: 100%;
-            min-height: 560px;
-            transform-style: preserve-3d;
-            transition: transform 0.9s cubic-bezier(0.68, -0.2, 0.27, 1.2);
-            cursor: pointer;
-        }
-        .medal.is-flipped { transform: rotateY(180deg); }
 
-        .medal-face {
-            position: absolute;
-            inset: 0;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            border-radius: 28px;
-            background: var(--card-face);
-            border: 1.5px solid var(--card-line);
-            box-shadow: 0 45px 90px -25px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.04);
-            padding: 2.1rem 2rem 1.75rem;
-            display: flex;
-            flex-direction: column;
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            padding: 1.6rem 1.7rem;
+            position: relative;
         }
-        .medal-face::before {
+        .card::before {
             content: "";
             position: absolute;
-            inset: 9px;
-            border: 1px dashed rgba(212,175,55,0.32);
-            border-radius: 21px;
+            inset: 6px;
+            border: 1px dashed rgba(212,175,55,0.22);
+            border-radius: 15px;
             pointer-events: none;
         }
-        .medal-face--back { transform: rotateY(180deg); overflow-y: auto; }
 
-        .medal-corner {
-            position: absolute;
-            width: 26px;
-            height: 26px;
-            border: 2px solid var(--gold);
-            opacity: 0.55;
-        }
-        .medal-corner--tl { top: 14px; left: 14px; border-right: none; border-bottom: none; border-radius: 6px 0 0 0; }
-        .medal-corner--tr { top: 14px; right: 14px; border-left: none; border-bottom: none; border-radius: 0 6px 0 0; }
-        .medal-corner--bl { bottom: 14px; left: 14px; border-right: none; border-top: none; border-radius: 0 0 0 6px; }
-        .medal-corner--br { bottom: 14px; right: 14px; border-left: none; border-top: none; border-radius: 0 0 6px 0; }
-
-        .flip-tab {
-            position: absolute;
-            top: 1.4rem;
-            right: 1.4rem;
-            z-index: 5;
-            background: var(--panel-inset);
-            border: 1px solid var(--card-line-soft);
-            border-radius: 999px;
-            width: 2.5rem;
-            height: 2.5rem;
+        /* ---- PROFILE CROWN (full width) ---- */
+        .card--profile {
+            grid-column: 1 / -1;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: var(--jade-bright);
-            cursor: pointer;
-            transition: transform 0.4s ease, border-color 0.3s ease;
+            gap: 1.4rem;
+            flex-wrap: wrap;
+            padding: 1.5rem 1.9rem;
         }
-        .flip-tab:hover { border-color: var(--gold); transform: rotate(90deg); }
-        .flip-tab svg { width: 1.15rem; height: 1.15rem; }
-
-        /* ---------- FRONT: identity ---------- */
-        .medal-crest {
-            width: 4.4rem;
-            height: 4.4rem;
-            margin: 0 auto 1rem;
+        .profile-crest {
+            width: 4.2rem;
+            height: 4.2rem;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50% 50% 10% 10%;
             background: linear-gradient(160deg, rgba(212,175,55,0.24), rgba(0,166,147,0.06));
-            border: 1.5px solid var(--card-line);
-            box-shadow: 0 0 0 5px rgba(212,175,55,0.05), 0 0 22px -6px rgba(212,175,55,0.55);
+            border: 1.5px solid var(--line);
+            box-shadow: 0 0 0 5px rgba(212,175,55,0.05), 0 0 20px -6px rgba(212,175,55,0.5);
             color: var(--gold-bright);
         }
-        .medal-crest svg { width: 2.05rem; height: 2.05rem; }
-
-        .medal-name {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 1.35rem;
-            text-align: center;
-            margin: 0 0 0.2rem;
-            color: var(--ink);
-        }
-        .medal-id {
-            font-family: monospace;
-            font-size: 0.68rem;
-            text-align: center;
-            color: var(--ink-faint);
-            margin: 0 0 0.9rem;
-            letter-spacing: 0.04em;
-        }
-        .medal-status-row { display: flex; justify-content: center; margin-bottom: 1.5rem; }
+        .profile-crest svg { width: 2rem; height: 2rem; }
+        .profile-id-block { flex: 1; min-width: 160px; }
+        .profile-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.3rem; margin: 0 0 0.2rem; color: var(--ink); }
+        .profile-uid { font-family: monospace; font-size: 0.7rem; color: var(--ink-faint); letter-spacing: 0.04em; }
         #status-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            padding: 0.45rem 1.2rem;
+            padding: 0.5rem 1.15rem;
             border-radius: 999px;
-            font-size: 0.62rem;
+            font-size: 0.64rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.1em;
+            white-space: nowrap;
         }
 
-        .medal-divider {
-            border: none;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--card-line), transparent);
-            margin: 0 0 1.5rem;
-        }
-
-        /* two usage dials side by side */
-        .dial-pair {
+        /* ---- THERMOMETER USAGE CARDS ---- */
+        .card--thermo {
+            grid-column: span 3;
             display: flex;
-            justify-content: center;
-            gap: 1.6rem;
-            margin-bottom: 1.4rem;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
-        .dial-unit { display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 190px; }
-        .dial-kicker {
+        @media (max-width: 860px) { .card--thermo { grid-column: span 6; } }
+        @media (max-width: 520px) { .card--thermo { grid-column: 1 / -1; } }
+
+        .thermo-kicker {
             font-family: 'Cinzel', serif;
-            font-size: 0.6rem;
+            font-size: 0.62rem;
             font-weight: 700;
             letter-spacing: 0.14em;
             text-transform: uppercase;
             color: var(--jade-bright);
-            margin: 0 0 0.7rem;
+            margin: 0 0 1rem;
         }
-        .dial {
-            width: 132px;
-            height: 132px;
-            border-radius: 50%;
+
+        /* The thermometer tube: a tall vertical rounded shaft. Inside it we
+           place the untouched backend progress markup, rotated 180deg via
+           writing-mode so the horizontal % width fill becomes a bottom-up
+           vertical fill — no backend markup/DOM structure is altered, only
+           its visual orientation. */
+        .thermo-shell {
+            width: 34px;
+            height: 190px;
+            border-radius: 17px;
+            background: var(--surface-inset);
+            border: 1.5px solid var(--line);
+            box-shadow: inset 0 3px 10px rgba(0,0,0,0.45);
             position: relative;
-            margin-bottom: 0.9rem;
-            padding: 9px;
-            background: repeating-conic-gradient(from 0deg, rgba(212,175,55,0.6) 0deg 1.3deg, transparent 1.3deg 9deg);
-            -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #000 calc(100% - 7px));
-            mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #000 calc(100% - 7px));
-            display: flex;
+            overflow: hidden;
+            margin-bottom: 1.1rem;
         }
-        .dial-core {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: radial-gradient(circle at 35% 28%, rgba(212,175,55,0.16), transparent 60%), var(--panel-inset);
-            border: 1px solid var(--card-line-soft);
-            -webkit-mask: none;
-            mask: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 0.4rem;
-            text-align: center;
-        }
-        .dial-core::before {
+        .thermo-shell::after {
+            /* graduation ticks */
             content: "";
             position: absolute;
-            inset: -9px;
-            border-radius: 50%;
-            border: 1px dashed rgba(212,175,55,0.3);
-            animation: spinRing 55s linear infinite;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent 0, transparent calc(20% - 1px),
+                rgba(212,175,55,0.28) calc(20% - 1px), rgba(212,175,55,0.28) 20%
+            );
             pointer-events: none;
+            z-index: 3;
         }
-        @keyframes spinRing { to { transform: rotate(360deg); } }
-        .dial-value {
-            font-family: 'Cinzel', 'Vazirmatn', serif;
-            font-size: 1.05rem;
-            font-weight: 800;
-            color: var(--ink);
-            line-height: 1.15;
-            max-width: 92px;
-            word-break: break-word;
-        }
-        .dial-limit { font-size: 0.6rem; color: var(--ink-faint); margin-top: 0.3rem; white-space: nowrap; }
-
-        .arc-track {
+        .thermo-shell .thermo-rotator {
+            position: absolute;
+            inset: 0;
+            /* rotate the horizontal bar 180deg + writing flip so its
+               "width %" fill visually becomes a bottom-anchored vertical
+               fill inside the tube */
+            transform: rotate(180deg);
             width: 100%;
-            border-radius: 999px;
-            background: var(--panel-inset);
-            border: 1px solid var(--card-line-soft);
-            padding: 2px;
+            height: 100%;
+            display: flex;
         }
-        .arc-track div[class*="progress"] {
-            height: 10px !important;
-            background: rgba(1,2,8,0.85) !important;
-            border-radius: 999px !important;
-            overflow: hidden !important;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.85) !important;
-            position: relative !important;
-            border: none !important;
+        .thermo-shell .thermo-rotator {
+            writing-mode: vertical-lr;
         }
-        .arc-track div[class*="progress"] > div {
+        .thermo-shell div[class*="progress"] {
+            width: 100% !important;
             height: 100% !important;
-            background: linear-gradient(90deg, var(--lapis-bright) 0%, var(--jade) 55%, var(--gold-bright) 100%) !important;
-            border-radius: 999px !important;
-            box-shadow: 0 0 10px var(--jade) !important;
-            transition: width 1.3s cubic-bezier(0.16,1,0.3,1) !important;
+            background: transparent !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            overflow: hidden !important;
+            position: relative !important;
+            writing-mode: horizontal-tb;
+            display: block;
+        }
+        .thermo-shell div[class*="progress"] > div {
+            /* the injected inner div carries inline style="width:XX%" —
+               inside a vertical writing-mode parent this becomes a
+               vertical (block-size) fill instead of horizontal */
+            height: 100% !important;
+            background: linear-gradient(0deg, var(--gold-bright) 0%, var(--jade) 55%, var(--lapis-bright) 100%) !important;
+            box-shadow: 0 0 14px var(--jade), 0 0 4px var(--gold-bright) !important;
+            transition: width 1.2s cubic-bezier(0.16,1,0.3,1) !important;
+            border-radius: 0 !important;
         }
 
-        .medal-meta-row {
+        .thermo-bulb {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            margin-top: -27px;
+            position: relative;
+            z-index: 4;
+            background: radial-gradient(circle at 35% 30%, rgba(212,175,55,0.2), transparent 60%), var(--surface-inset);
+            border: 1.5px solid var(--line);
+            box-shadow: 0 0 18px -4px rgba(212,175,55,0.5);
+            display: none;
+        }
+
+        .thermo-value { font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 800; color: var(--ink); line-height: 1.2; }
+        .thermo-limit { font-size: 0.62rem; color: var(--ink-faint); margin-top: 0.2rem; }
+
+        /* ---- EXPIRY + IP TILE ---- */
+        .card--meta {
+            grid-column: span 6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.1rem;
+        }
+        @media (max-width: 860px) { .card--meta { grid-column: 1 / -1; } }
+        .meta-row {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
-            margin-top: auto;
-            padding-top: 1.25rem;
-            border-top: 1px dashed var(--card-line-soft);
+            align-items: center;
+            gap: 1rem;
         }
-        .medal-meta-block { display: flex; flex-direction: column; gap: 0.15rem; }
-        .medal-meta-block:last-child { text-align: right; }
-        .medal-meta-label {
-            font-size: 0.58rem;
+        .meta-row + .meta-row { padding-top: 1.1rem; border-top: 1px dashed var(--line-soft); }
+        .meta-label {
+            font-size: 0.64rem;
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             color: var(--jade-bright);
             display: flex;
             align-items: center;
-            gap: 0.3rem;
+            gap: 0.4rem;
+            margin: 0 0 0.35rem;
         }
-        .medal-meta-block:last-child .medal-meta-label { justify-content: flex-end; }
-        .medal-meta-label svg { width: 0.7rem; height: 0.7rem; }
-        .medal-meta-value { font-family: 'Cinzel', serif; font-size: 0.98rem; font-weight: 700; color: var(--ink); }
-        .medal-meta-caption { font-size: 0.6rem; color: var(--ink-faint); }
-        .medal-ip-value { font-family: monospace; font-size: 0.76rem; color: var(--ink); font-weight: 600; }
+        .meta-label svg { width: 0.8rem; height: 0.8rem; }
+        .meta-value { font-family: 'Cinzel', 'Vazirmatn', serif; font-size: 1.15rem; font-weight: 800; color: var(--ink); }
+        .meta-caption { font-size: 0.62rem; color: var(--ink-faint); margin-top: 0.15rem; }
+        .meta-ip-value { font-family: monospace; font-size: 0.85rem; font-weight: 700; color: var(--ink); }
 
-        /* ---------- BACK: links & import ---------- */
-        .medal-back-title {
+        /* ---- INTEGRATIONS CARD (full width) ---- */
+        .card--integrations { grid-column: 1 / -1; }
+        .card-title {
             font-family: 'Cinzel', serif;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            text-align: center;
-            margin: 0.2rem 0 1.3rem;
-            color: var(--ink);
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 0.55rem;
+            margin: 0 0 0.3rem;
+            color: var(--ink);
         }
-        .medal-back-title svg { width: 1.1rem; height: 1.1rem; color: var(--jade-bright); }
+        .card-title svg { width: 1.1rem; height: 1.1rem; color: var(--jade-bright); }
+        .card-desc { font-size: 0.76rem; color: var(--ink-dim); margin: 0 0 1.4rem; }
 
         .niche {
-            border: 1px solid var(--card-line-soft);
-            border-radius: 16px;
-            padding: 1.15rem 1.2rem;
-            background: var(--panel-inset);
-            margin-bottom: 1.1rem;
+            border: 1px solid var(--line-soft);
+            border-radius: 15px;
+            padding: 1.2rem 1.3rem;
+            background: var(--surface-inset);
+            margin-bottom: 1.2rem;
         }
+        .niche:last-of-type { margin-bottom: 0; }
         .niche-title {
             font-weight: 700;
-            font-size: 0.86rem;
+            font-size: 0.88rem;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             gap: 0.5rem;
-            margin: 0 0 0.35rem;
+            margin: 0 0 0.4rem;
             color: var(--ink);
         }
         .tag-recommended {
-            font-size: 0.54rem;
+            font-size: 0.55rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.06em;
@@ -488,57 +445,56 @@
             background: linear-gradient(120deg, var(--gold), var(--jade-bright));
             color: #06110d;
         }
-        .niche-desc { font-size: 0.7rem; color: var(--ink-dim); line-height: 1.55; margin: 0 0 0.9rem; }
+        .niche-desc { font-size: 0.72rem; color: var(--ink-dim); line-height: 1.6; margin: 0 0 1rem; }
 
-        .field-row { display: flex; flex-direction: column; gap: 0.55rem; }
-        .field-actions { display: flex; gap: 0.4rem; }
+        .field-row { display: flex; flex-direction: column; gap: 0.6rem; }
+        @media (min-width: 640px) { .field-row { flex-direction: row; } }
+        .field-actions { display: flex; gap: 0.45rem; }
 
         .field {
             flex: 1;
             min-width: 0;
             background: var(--field-bg);
-            border: 1px solid var(--card-line-soft);
+            border: 1px solid var(--line-soft);
             color: var(--ink);
-            border-radius: 10px;
-            padding: 0.65rem 0.85rem;
+            border-radius: 11px;
+            padding: 0.75rem 0.95rem;
             font-family: monospace;
-            font-size: 0.72rem;
+            font-size: 0.78rem;
             outline: none;
             width: 100%;
             transition: border-color 0.25s ease, box-shadow 0.25s ease;
         }
-        .field:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,0.15); }
-        .field-sm { padding: 0.5rem 0.65rem; font-size: 0.65rem; border-radius: 8px; }
+        .field:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,0.16); }
+        .field-sm { padding: 0.5rem 0.7rem; font-size: 0.68rem; border-radius: 8px; }
 
         .btn-gold {
             background: linear-gradient(120deg, var(--jade) 0%, #037562 100%);
             color: #04120f;
             font-weight: 800;
-            font-size: 0.74rem;
-            letter-spacing: 0.02em;
+            font-size: 0.78rem;
             border: 1px solid rgba(246,239,217,0.25);
-            border-radius: 10px;
-            padding: 0.65rem 1.05rem;
+            border-radius: 11px;
+            padding: 0.75rem 1.25rem;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.4rem;
+            gap: 0.45rem;
             white-space: nowrap;
-            box-shadow: 0 0 0 rgba(212,175,55,0);
             transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, background 0.3s ease;
         }
         .btn-gold:hover {
             background: linear-gradient(120deg, var(--gold) 0%, var(--gold-dim) 100%);
             transform: translateY(-2px);
-            box-shadow: 0 14px 26px -10px rgba(212,175,55,0.55), 0 0 18px -4px rgba(243,213,118,0.5);
+            box-shadow: 0 14px 26px -10px rgba(212,175,55,0.5);
         }
         .btn-ghost {
             background: transparent;
-            border: 1px solid var(--card-line-soft);
+            border: 1px solid var(--line-soft);
             color: var(--ink);
-            border-radius: 10px;
-            padding: 0.55rem 0.8rem;
+            border-radius: 11px;
+            padding: 0.6rem 0.85rem;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -547,31 +503,37 @@
             flex-shrink: 0;
         }
         .btn-ghost:hover { border-color: var(--gold); color: var(--gold-bright); }
-        .btn-ghost svg, .btn-gold svg { width: 0.9rem; height: 0.9rem; }
+        .btn-ghost svg, .btn-gold svg { width: 0.95rem; height: 0.95rem; }
 
-        .format-grid { display: grid; grid-template-columns: 1fr; gap: 0.6rem; }
+        .format-grid { display: grid; grid-template-columns: 1fr; gap: 0.85rem; }
+        @media (min-width: 780px) { .format-grid { grid-template-columns: 1fr 1fr; } }
         .format-cell {
-            border: 1px solid var(--card-line-soft);
-            border-radius: 12px;
-            padding: 0.7rem 0.8rem;
-            background: rgba(1,2,8,0.35);
+            border: 1px solid var(--line-soft);
+            border-radius: 13px;
+            padding: 0.9rem 1rem;
+            background: rgba(1,2,8,0.25);
             display: flex;
             flex-direction: column;
-            gap: 0.4rem;
+            gap: 0.55rem;
         }
+        html:not(.dark) .format-cell { background: rgba(255,255,255,0.4); }
         .format-cell-head { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
-        .format-cell-name { font-size: 0.66rem; font-weight: 700; color: var(--ink); }
-        .format-tag { font-size: 0.52rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.16rem 0.36rem; border-radius: 5px; white-space: nowrap; }
-        .format-tag--raw { background: rgba(129,140,248,0.18); color: #a9b3fb; }
-        .format-tag--b64 { background: rgba(0,166,147,0.2); color: #63e9d3; }
-        .format-tag--sb { background: rgba(212,175,55,0.2); color: var(--gold-bright); }
-        .format-tag--clash { background: rgba(167,139,250,0.2); color: #c6b3fb; }
-        .format-cell-row { display: flex; gap: 0.4rem; }
+        .format-cell-name { font-size: 0.7rem; font-weight: 700; color: var(--ink); }
+        .format-tag { font-size: 0.56rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.18rem 0.4rem; border-radius: 5px; white-space: nowrap; }
+        .format-tag--raw { background: rgba(129,140,248,0.18); color: #5f6ce0; }
+        html.dark .format-tag--raw { color: #a9b3fb; }
+        .format-tag--b64 { background: rgba(0,166,147,0.2); color: #017a6a; }
+        html.dark .format-tag--b64 { color: #63e9d3; }
+        .format-tag--sb { background: rgba(212,175,55,0.2); color: #7a5a10; }
+        html.dark .format-tag--sb { color: var(--gold-bright); }
+        .format-tag--clash { background: rgba(167,139,250,0.2); color: #6d4fc9; }
+        html.dark .format-tag--clash { color: #c6b3fb; }
+        .format-cell-row { display: flex; gap: 0.45rem; }
         .chip-btn {
             border: none;
-            border-radius: 8px;
-            padding: 0.5rem 0.6rem;
-            font-size: 0.6rem;
+            border-radius: 9px;
+            padding: 0.55rem 0.7rem;
+            font-size: 0.64rem;
             font-weight: 800;
             color: #04120f;
             cursor: pointer;
@@ -584,10 +546,10 @@
         .chip-btn--sb { background: var(--gold); }
         .chip-btn--clash { background: #a78bfa; }
         .chip-qr {
-            border: 1px solid var(--card-line-soft);
+            border: 1px solid var(--line-soft);
             background: transparent;
-            border-radius: 8px;
-            padding: 0.45rem;
+            border-radius: 9px;
+            padding: 0.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -597,64 +559,70 @@
             flex-shrink: 0;
         }
         .chip-qr:hover { border-color: var(--gold); color: var(--gold-bright); }
-        .chip-qr svg { width: 0.85rem; height: 0.85rem; }
+        .chip-qr svg { width: 0.9rem; height: 0.9rem; }
 
         .colonnade-label {
             font-family: 'Cinzel', serif;
-            font-size: 0.62rem;
+            font-size: 0.64rem;
             font-weight: 700;
             letter-spacing: 0.14em;
             text-transform: uppercase;
             color: var(--jade-bright);
             display: flex;
             align-items: center;
-            gap: 0.4rem;
-            margin: 0 0 0.8rem;
+            gap: 0.45rem;
+            margin: 1.8rem 0 1rem;
         }
-        .colonnade-label svg { width: 0.8rem; height: 0.8rem; }
+        .colonnade-label svg { width: 0.85rem; height: 0.85rem; }
         .colonnade {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 0.5rem;
+            gap: 0.7rem;
         }
+        @media (min-width: 640px) { .colonnade { grid-template-columns: repeat(4, 1fr); } }
         .pillar {
-            border: 1px solid var(--card-line-soft);
-            border-radius: 10px;
-            background: rgba(1,2,8,0.4);
+            border: 1px solid var(--line-soft);
+            border-radius: 12px;
+            background: rgba(1,2,8,0.25);
             color: var(--ink);
             text-decoration: none;
-            padding: 0.7rem 0.5rem;
+            padding: 0.85rem 0.6rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.35rem;
+            gap: 0.4rem;
             font-weight: 700;
-            font-size: 0.7rem;
+            font-size: 0.78rem;
             transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
         }
-        .pillar svg { width: 0.8rem; height: 0.8rem; opacity: 0.45; transition: opacity 0.3s ease; }
-        .pillar:hover { border-color: var(--gold); color: var(--gold-bright); transform: translateY(-2px); box-shadow: 0 10px 20px -8px rgba(212,175,55,0.4); }
+        html:not(.dark) .pillar { background: rgba(255,255,255,0.4); }
+        .pillar svg { width: 0.9rem; height: 0.9rem; opacity: 0.45; transition: opacity 0.3s ease; }
+        .pillar:hover { border-color: var(--gold); color: var(--gold-bright); transform: translateY(-3px); box-shadow: 0 12px 24px -10px rgba(212,175,55,0.4); }
         .pillar:hover svg { opacity: 1; }
 
-        .medal-back-foot {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px dashed var(--card-line-soft);
+        .card-foot {
+            margin-top: 1.8rem;
+            padding-top: 1.3rem;
+            border-top: 1px dashed var(--line-soft);
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
+            align-items: center;
+            gap: 0.9rem;
         }
-        .medal-back-note { font-size: 0.64rem; color: var(--ink-dim); text-align: center; }
+        @media (min-width: 640px) { .card-foot { flex-direction: row; justify-content: space-between; } }
+        .card-foot-note { font-size: 0.7rem; color: var(--ink-dim); }
+        .card-foot-actions { display: flex; gap: 0.5rem; width: 100%; }
+        @media (min-width: 640px) { .card-foot-actions { width: auto; } }
 
         /* ==========================================================
-           STICKY FOOTER BAR — theme / lang
+           STICKY FOOTER BAR
            ========================================================== */
         .footer-bar {
             position: fixed;
             left: 0; right: 0; bottom: 0;
             z-index: 30;
             background: var(--footer-bg);
-            border-top: 1px solid var(--card-line-soft);
+            border-top: 1px solid var(--line-soft);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             padding: 0.85rem 1.5rem;
@@ -663,18 +631,9 @@
             justify-content: center;
             gap: 0.75rem;
         }
-        .footer-bar::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-        }
         .ctl-btn {
-            background: rgba(1,2,8,0.5);
-            border: 1px solid var(--card-line-soft);
+            background: var(--surface-inset);
+            border: 1px solid var(--line-soft);
             color: var(--ink);
             border-radius: 999px;
             padding: 0.55rem 1.1rem;
@@ -692,7 +651,7 @@
            QR MODAL
            ========================================================== */
         .modal-overlay {
-            background: rgba(1,2,8,0.9);
+            background: rgba(1,2,8,0.88);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             position: fixed;
@@ -705,18 +664,20 @@
             opacity: 0;
             transition: opacity 0.3s ease;
         }
+        html:not(.dark) .modal-overlay { background: rgba(60,50,20,0.35); }
         .modal-overlay.flex { display: flex; }
         .modal-card {
-            background: linear-gradient(160deg, var(--night-1), var(--void));
-            border: 1px solid var(--card-line);
-            border-radius: 24px;
-            box-shadow: 0 40px 90px -20px rgba(0,0,0,0.8), 0 0 60px -22px rgba(212,175,55,0.35);
+            background: var(--surface-strong);
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            box-shadow: 0 40px 90px -20px rgba(0,0,0,0.5), 0 0 60px -22px rgba(212,175,55,0.3);
             max-width: 22rem;
             width: 100%;
             padding: 2rem 1.75rem;
             position: relative;
             transform: scale(0.95);
             transition: transform 0.3s ease;
+            backdrop-filter: blur(20px);
         }
         .modal-close-btn {
             position: absolute; top: 1rem; right: 1rem;
@@ -732,7 +693,7 @@
         #qr-text {
             font-size: 0.64rem; text-align: center; color: var(--ink-dim); font-family: monospace;
             word-break: break-all; margin: 0 0 1.3rem; padding: 0.65rem 0.75rem;
-            background: rgba(0,0,0,0.3); border-radius: 12px; border: 1px solid var(--card-line-soft);
+            background: rgba(0,0,0,0.18); border-radius: 12px; border: 1px solid var(--line-soft);
         }
 
         /* ==========================================================
@@ -741,17 +702,18 @@
         #toast {
             position: fixed; top: 1.5rem; left: 50%;
             transform: translate(-50%, -1rem);
-            background: var(--night-1);
-            border: 1px solid var(--card-line);
+            background: var(--surface-strong);
+            border: 1px solid var(--line);
             color: var(--ink);
             padding: 0.65rem 1.3rem;
             border-radius: 999px;
-            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.7), 0 0 22px -6px rgba(212,175,55,0.35);
+            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.5), 0 0 22px -6px rgba(212,175,55,0.3);
             font-weight: 700; font-size: 0.78rem;
             z-index: 60;
             transition: all 0.3s ease;
             opacity: 0; pointer-events: none;
             display: flex; align-items: center; gap: 0.45rem;
+            backdrop-filter: blur(16px);
         }
         #toast svg { width: 1.05rem; height: 1.05rem; color: var(--jade-bright); }
 
@@ -761,17 +723,10 @@
         .hidden { display: none !important; }
         .fade-in { animation: fadeIn 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-
-        @media (max-width: 480px) {
-            .medal { min-height: 640px; }
-            .dial { width: 112px; height: 112px; }
-            .dial-value { font-size: 0.92rem; max-width: 80px; }
-            .dial-pair { gap: 0.85rem; }
-        }
     </style>
 </head>
 <body class="fade-in">
-    <div class="sky"><div class="stars"></div><div class="stars-2"></div></div>
+    <div class="sky"><div class="stars"></div></div>
 
     <header class="court-header">
         <div class="seal-emblem">
@@ -782,214 +737,195 @@
         </div>
         <h2 class="seal-title">ZAGROOO</h2>
         <span class="seal-sub">Court of the Radiant Network</span>
-        <span class="flip-hint">⟲ Tap the medal to reveal your connection links</span>
     </header>
 
-    <!-- The Royal Medal — 3D flip card -->
-    <div class="medal-stage">
-        <div class="medal" id="medal" onclick="flipMedalFromCard(event)">
+    <main class="dashboard">
 
-            <!-- FRONT FACE -->
-            <div class="medal-face medal-face--front">
-                <span class="medal-corner medal-corner--tl"></span>
-                <span class="medal-corner medal-corner--tr"></span>
-                <span class="medal-corner medal-corner--bl"></span>
-                <span class="medal-corner medal-corner--br"></span>
+        <!-- Profile Crown -->
+        <div class="card card--profile">
+            <div class="profile-crest">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+            </div>
+            <div class="profile-id-block">
+                <h1 class="profile-name">__USER_NAME__</h1>
+                <p class="profile-uid">__USER_ID__</p>
+            </div>
+            <span id="status-badge"></span>
+        </div>
 
-                <div class="flip-tab" onclick="flipMedal(event)" title="View connection links">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+        <!-- Total Usage Thermometer -->
+        <div class="card card--thermo">
+            <p class="thermo-kicker" data-i18n="totalUsage">Total Usage</p>
+            <div class="thermo-shell">
+                <div class="thermo-rotator">
+                    __TOTAL_PROGRESS__
                 </div>
+            </div>
+            <span class="thermo-value">__TOTAL_GB__</span>
+            <span class="thermo-limit">/ __LIMIT_TOTAL_GB__ GB</span>
+        </div>
 
-                <div class="medal-crest">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+        <!-- Daily Usage Thermometer -->
+        <div class="card card--thermo">
+            <p class="thermo-kicker" data-i18n="dailyUsage">Daily Usage</p>
+            <div class="thermo-shell">
+                <div class="thermo-rotator">
+                    __DAILY_PROGRESS__
                 </div>
-                <h1 class="medal-name">__USER_NAME__</h1>
-                <p class="medal-id">__USER_ID__</p>
-                <div class="medal-status-row">
-                    <span id="status-badge"></span>
+            </div>
+            <span class="thermo-value">__DAILY_GB__</span>
+            <span class="thermo-limit">/ __LIMIT_DAILY_GB__ GB</span>
+        </div>
+
+        <!-- Expiry + IP -->
+        <div class="card card--meta">
+            <div class="meta-row">
+                <div>
+                    <p class="meta-label">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        <span data-i18n="expDate">Expiration Date</span>
+                    </p>
+                    <span class="meta-value" id="expiry-display">__EXPIRY_DATE__</span>
+                    <p class="meta-caption" data-i18n="calendarLocal">Calendar Local Time</p>
                 </div>
-
-                <hr class="medal-divider">
-
-                <div class="dial-pair">
-                    <div class="dial-unit">
-                        <p class="dial-kicker" data-i18n="totalUsage">Total Usage</p>
-                        <div class="dial">
-                            <div class="dial-core">
-                                <span class="dial-value">__TOTAL_GB__</span>
-                                <span class="dial-limit">/ __LIMIT_TOTAL_GB__ GB</span>
-                            </div>
-                        </div>
-                        <div class="arc-track">
-                            __TOTAL_PROGRESS__
-                        </div>
-                    </div>
-                    <div class="dial-unit">
-                        <p class="dial-kicker" data-i18n="dailyUsage">Daily Usage</p>
-                        <div class="dial">
-                            <div class="dial-core">
-                                <span class="dial-value">__DAILY_GB__</span>
-                                <span class="dial-limit">/ __LIMIT_DAILY_GB__ GB</span>
-                            </div>
-                        </div>
-                        <div class="arc-track">
-                            __DAILY_PROGRESS__
-                        </div>
-                    </div>
+            </div>
+            <div class="meta-row">
+                <div>
+                    <p class="meta-label">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>
+                        Connection IP
+                    </p>
+                    <span class="meta-ip-value" id="client-ip">Detecting...</span>
                 </div>
+            </div>
+        </div>
 
-                <div class="medal-meta-row">
-                    <div class="medal-meta-block">
-                        <span class="medal-meta-label">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            <span data-i18n="expDate">Expiration Date</span>
-                        </span>
-                        <span class="medal-meta-value">__EXPIRY_DATE__</span>
-                        <span class="medal-meta-caption" data-i18n="calendarLocal">Calendar Local Time</span>
-                    </div>
-                    <div class="medal-meta-block">
-                        <span class="medal-meta-label">
-                            Connection IP
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>
-                        </span>
-                        <span class="medal-ip-value" id="client-ip">Detecting...</span>
+        <!-- Integrations -->
+        <div class="card card--integrations">
+            <h3 class="card-title">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                <span data-i18n="integrationTitle">Integration Connections</span>
+            </h3>
+            <p class="card-desc" data-i18n="integrationDesc">Add your preferred configuration link.</p>
+
+            <div class="niche">
+                <h4 class="niche-title">
+                    <span data-i18n="universalLink">Universal Auto-Detecting Link</span>
+                    <span class="tag-recommended">Recommended</span>
+                </h4>
+                <p class="niche-desc" data-i18n="universalDesc">This URL automatically detects your client and delivers the optimal format.</p>
+                <div class="field-row">
+                    <input type="text" id="link-normal" value="__SYNC_NORMAL__" readonly class="field">
+                    <div class="field-actions">
+                        <button onclick="copyLink('link-normal')" class="btn-gold">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                            <span data-i18n="copy">Copy</span>
+                        </button>
+                        <button onclick="showQRModal('__SYNC_NORMAL__')" class="btn-ghost">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- BACK FACE -->
-            <div class="medal-face medal-face--back">
-                <span class="medal-corner medal-corner--tl"></span>
-                <span class="medal-corner medal-corner--tr"></span>
-                <span class="medal-corner medal-corner--bl"></span>
-                <span class="medal-corner medal-corner--br"></span>
+            <div class="niche">
+                <h4 class="niche-title"><span data-i18n="availableFormats">Available Subscription Formats</span></h4>
+                <p class="niche-desc" data-i18n="formatsDesc">Use these links to explicitly request specific configuration formats.</p>
 
-                <div class="flip-tab" onclick="flipMedal(event)" title="Back to profile">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                </div>
-
-                <h3 class="medal-back-title">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
-                    <span data-i18n="integrationTitle">Integration Connections</span>
-                </h3>
-
-                <div class="niche">
-                    <h4 class="niche-title">
-                        <span data-i18n="universalLink">Universal Auto-Detecting Link</span>
-                        <span class="tag-recommended">Recommended</span>
-                    </h4>
-                    <p class="niche-desc" data-i18n="universalDesc">This URL automatically detects your client and delivers the optimal format.</p>
-                    <div class="field-row">
-                        <input type="text" id="link-normal" value="__SYNC_NORMAL__" readonly class="field" onclick="event.stopPropagation()">
-                        <div class="field-actions">
-                            <button onclick="event.stopPropagation(); copyLink('link-normal')" class="btn-gold">
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-                                <span data-i18n="copy">Copy</span>
+                <div class="format-grid">
+                    <div class="format-cell">
+                        <div class="format-cell-head">
+                            <span class="format-cell-name">Raw Configs (Text/URI)</span>
+                            <span class="format-tag format-tag--raw">RAW</span>
+                        </div>
+                        <div class="format-cell-row">
+                            <input type="text" id="link-raw-fmt" readonly class="field field-sm">
+                            <button onclick="copyLink('link-raw-fmt')" class="chip-btn chip-btn--raw"><span data-i18n="copy">Copy</span></button>
+                            <button onclick="showQRModal(document.getElementById('link-raw-fmt').value)" class="chip-qr">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
                             </button>
-                            <button onclick="event.stopPropagation(); showQRModal('__SYNC_NORMAL__')" class="btn-ghost">
+                        </div>
+                    </div>
+
+                    <div class="format-cell">
+                        <div class="format-cell-head">
+                            <span class="format-cell-name">Base64 Sub (V2Ray / Shadowrocket)</span>
+                            <span class="format-tag format-tag--b64">BASE64</span>
+                        </div>
+                        <div class="format-cell-row">
+                            <input type="text" id="link-base64-fmt" readonly class="field field-sm">
+                            <button onclick="copyLink('link-base64-fmt')" class="chip-btn chip-btn--b64"><span data-i18n="copy">Copy</span></button>
+                            <button onclick="showQRModal(document.getElementById('link-base64-fmt').value)" class="chip-qr">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="format-cell">
+                        <div class="format-cell-head">
+                            <span class="format-cell-name">Sing-box Subscription (JSON)</span>
+                            <span class="format-tag format-tag--sb">SINGBOX</span>
+                        </div>
+                        <div class="format-cell-row">
+                            <input type="text" id="link-singbox-fmt" readonly class="field field-sm">
+                            <button onclick="copyLink('link-singbox-fmt')" class="chip-btn chip-btn--sb"><span data-i18n="copy">Copy</span></button>
+                            <button onclick="showQRModal(document.getElementById('link-singbox-fmt').value)" class="chip-qr">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="format-cell">
+                        <div class="format-cell-head">
+                            <span class="format-cell-name">Clash Subscription (YAML)</span>
+                            <span class="format-tag format-tag--clash">CLASH</span>
+                        </div>
+                        <div class="format-cell-row">
+                            <input type="text" id="link-clash-fmt" readonly class="field field-sm">
+                            <button onclick="copyLink('link-clash-fmt')" class="chip-btn chip-btn--clash"><span data-i18n="copy">Copy</span></button>
+                            <button onclick="showQRModal(document.getElementById('link-clash-fmt').value)" class="chip-qr">
                                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
                             </button>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="niche">
-                    <h4 class="niche-title"><span data-i18n="availableFormats">Available Subscription Formats</span></h4>
-                    <p class="niche-desc" data-i18n="formatsDesc">Use these links to explicitly request specific configuration formats.</p>
+            <h4 class="colonnade-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                <span data-i18n="oneClickImport">One-Click Import</span>
+            </h4>
+            <div class="colonnade">
+                <a id="v2rayng-link" href="v2rayng://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__" class="pillar">
+                    <span>v2rayNG</span>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+                <a href="v2rayn://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__" class="pillar">
+                    <span>v2rayN</span>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+                <a href="shadowrocket://add/sub://__SYNC_NORMAL_BASE64__?title=__USER_NAME__" class="pillar">
+                    <span>Shadowrocket</span>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+                <a href="streisand://import/__SYNC_NORMAL__" class="pillar">
+                    <span>Streisand</span>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+            </div>
 
-                    <div class="format-grid">
-                        <div class="format-cell">
-                            <div class="format-cell-head">
-                                <span class="format-cell-name">Raw Configs (Text/URI)</span>
-                                <span class="format-tag format-tag--raw">RAW</span>
-                            </div>
-                            <div class="format-cell-row">
-                                <input type="text" id="link-raw-fmt" readonly class="field field-sm" onclick="event.stopPropagation()">
-                                <button onclick="event.stopPropagation(); copyLink('link-raw-fmt')" class="chip-btn chip-btn--raw"><span data-i18n="copy">Copy</span></button>
-                                <button onclick="event.stopPropagation(); showQRModal(document.getElementById('link-raw-fmt').value)" class="chip-qr">
-                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="format-cell">
-                            <div class="format-cell-head">
-                                <span class="format-cell-name">Base64 Sub (V2Ray / Shadowrocket)</span>
-                                <span class="format-tag format-tag--b64">BASE64</span>
-                            </div>
-                            <div class="format-cell-row">
-                                <input type="text" id="link-base64-fmt" readonly class="field field-sm" onclick="event.stopPropagation()">
-                                <button onclick="event.stopPropagation(); copyLink('link-base64-fmt')" class="chip-btn chip-btn--b64"><span data-i18n="copy">Copy</span></button>
-                                <button onclick="event.stopPropagation(); showQRModal(document.getElementById('link-base64-fmt').value)" class="chip-qr">
-                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="format-cell">
-                            <div class="format-cell-head">
-                                <span class="format-cell-name">Sing-box Subscription (JSON)</span>
-                                <span class="format-tag format-tag--sb">SINGBOX</span>
-                            </div>
-                            <div class="format-cell-row">
-                                <input type="text" id="link-singbox-fmt" readonly class="field field-sm" onclick="event.stopPropagation()">
-                                <button onclick="event.stopPropagation(); copyLink('link-singbox-fmt')" class="chip-btn chip-btn--sb"><span data-i18n="copy">Copy</span></button>
-                                <button onclick="event.stopPropagation(); showQRModal(document.getElementById('link-singbox-fmt').value)" class="chip-qr">
-                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="format-cell">
-                            <div class="format-cell-head">
-                                <span class="format-cell-name">Clash Subscription (YAML)</span>
-                                <span class="format-tag format-tag--clash">CLASH</span>
-                            </div>
-                            <div class="format-cell-row">
-                                <input type="text" id="link-clash-fmt" readonly class="field field-sm" onclick="event.stopPropagation()">
-                                <button onclick="event.stopPropagation(); copyLink('link-clash-fmt')" class="chip-btn chip-btn--clash"><span data-i18n="copy">Copy</span></button>
-                                <button onclick="event.stopPropagation(); showQRModal(document.getElementById('link-clash-fmt').value)" class="chip-qr">
-                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <h4 class="colonnade-label">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    <span data-i18n="oneClickImport">One-Click Import</span>
-                </h4>
-                <div class="colonnade">
-                    <a id="v2rayng-link" href="v2rayng://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__" class="pillar" onclick="event.stopPropagation()">
-                        <span>v2rayNG</span>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                    </a>
-                    <a href="v2rayn://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__" class="pillar" onclick="event.stopPropagation()">
-                        <span>v2rayN</span>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                    </a>
-                    <a href="shadowrocket://add/sub://__SYNC_NORMAL_BASE64__?title=__USER_NAME__" class="pillar" onclick="event.stopPropagation()">
-                        <span>Shadowrocket</span>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                    </a>
-                    <a href="streisand://import/__SYNC_NORMAL__" class="pillar" onclick="event.stopPropagation()">
-                        <span>Streisand</span>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                    </a>
-                </div>
-
-                <div class="medal-back-foot">
-                    <p class="medal-back-note">Advanced users can retrieve raw config blocks manually.</p>
-                    <button onclick="event.stopPropagation(); fetchDecodedRawContent()" class="btn-ghost" style="width:100%;">
+            <div class="card-foot">
+                <div class="card-foot-note">Advanced users can retrieve raw config blocks manually.</div>
+                <div class="card-foot-actions">
+                    <button onclick="fetchDecodedRawContent()" class="btn-ghost" style="width:100%;">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                        <span data-i18n="parsedContent" style="margin-left:0.3rem;">Retrieve Raw Content</span>
+                        <span data-i18n="parsedContent">Retrieve Raw Content</span>
                     </button>
                     <input type="text" id="link-raw" value="__SYNC_RAW__" class="hidden">
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <!-- QR Modal -->
     <div id="qr-modal" class="modal-overlay">
@@ -1264,19 +1200,103 @@
             if (singboxInput) singboxInput.value = normalLink + (normalLink.includes('?') ? '&flag=singbox' : '?flag=singbox');
             if (clashInput) clashInput.value = normalLink + (normalLink.includes('?') ? '&flag=clash' : '?flag=clash');
         })();
-
-        // Medal 3D flip logic (design-layer only; does not touch any
-        // backend/system function above)
-        function flipMedal(e) {
-            if (e) e.stopPropagation();
-            document.getElementById('medal').classList.toggle('is-flipped');
-        }
-        function flipMedalFromCard(e) {
-            // clicking empty card area also flips, but not when clicking
-            // an interactive control inside it (those call stopPropagation)
-            flipMedal(e);
-        }
     
 </script>
+
+    <!-- ==========================================================
+         Design-layer addition: convert the injected __EXPIRY_DATE__
+         (assumed Gregorian, e.g. "2026-11-14" or similar parseable
+         format) into a Persian/Jalali date with weekday name, shown
+         only when the page is in Farsi mode. Does not touch any of
+         the functions/markup above; runs independently after load.
+         ========================================================== -->
+    <script>
+        (function () {
+            function gregorianToJD(year, month, day) {
+                var a = Math.floor((14 - month) / 12);
+                var y = year + 4800 - a;
+                var m = month + 12 * a - 3;
+                return day + Math.floor((153 * m + 2) / 5) + 365 * y +
+                    Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+            }
+
+            var LEAP_YEARS_IN_CYCLE = [1, 5, 9, 13, 17, 22, 26, 30];
+            function isLeapSlot(n) { return LEAP_YEARS_IN_CYCLE.indexOf(n) !== -1; }
+
+            // Epoch calibrated so that 2024-03-20 (confirmed Nowruz) == Persian 1403-01-01
+            var PERSIAN_EPOCH_JD = 1948320;
+
+            function jdToPersian(jd) {
+                var daysSinceEpoch = Math.floor(jd) - PERSIAN_EPOCH_JD;
+                var cycleLen = 33 * 365 + 8;
+                var cycle = Math.floor(daysSinceEpoch / cycleLen);
+                var d = daysSinceEpoch % cycleLen;
+                if (d < 0) d += cycleLen;
+                var yearInCycle = 0;
+                for (var y = 0; y < 34; y++) {
+                    var yl = isLeapSlot((y + 1) % 33 === 0 ? 33 : (y + 1) % 33) ? 366 : 365;
+                    if (d < yl) { yearInCycle = y; break; }
+                    d -= yl;
+                }
+                var year = cycle * 33 + yearInCycle + 1;
+                var dayOfYear = d + 1;
+                var month, day;
+                if (dayOfYear <= 186) {
+                    month = Math.ceil(dayOfYear / 31);
+                    day = dayOfYear - (month - 1) * 31;
+                } else {
+                    var rem = dayOfYear - 186;
+                    month = 6 + Math.ceil(rem / 30);
+                    day = rem - (month - 7) * 30;
+                }
+                return [year, month, day];
+            }
+
+            var PERSIAN_MONTHS = ['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+            var PERSIAN_WEEKDAYS = ['یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه','شنبه'];
+            var PERSIAN_DIGITS = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+
+            function toPersianDigits(str) {
+                return String(str).replace(/[0-9]/g, function (d) { return PERSIAN_DIGITS[d]; });
+            }
+
+            function formatShamsi(gDate) {
+                var jd = gregorianToJD(gDate.getFullYear(), gDate.getMonth() + 1, gDate.getDate());
+                var p = jdToPersian(jd);
+                var weekday = PERSIAN_WEEKDAYS[gDate.getDay()];
+                var monthName = PERSIAN_MONTHS[p[1] - 1];
+                return weekday + '، ' + toPersianDigits(p[2]) + ' ' + monthName + ' ' + toPersianDigits(p[0]);
+            }
+
+            window.__shahPasandUpdateExpiry = function () {
+                var el = document.getElementById('expiry-display');
+                if (!el) return;
+                var raw = el.getAttribute('data-raw') || el.textContent.trim();
+                el.setAttribute('data-raw', raw);
+                if (typeof currentLang !== 'undefined' && currentLang === 'fa') {
+                    var d = new Date(raw);
+                    if (!isNaN(d.getTime())) {
+                        el.textContent = formatShamsi(d);
+                        return;
+                    }
+                }
+                el.textContent = raw;
+            };
+
+            var origApplyLang = window.applyLang;
+            if (typeof origApplyLang === 'function') {
+                window.applyLang = function () {
+                    origApplyLang.apply(this, arguments);
+                    window.__shahPasandUpdateExpiry();
+                };
+            }
+            document.addEventListener('DOMContentLoaded', function () {
+                window.__shahPasandUpdateExpiry();
+            });
+            if (document.readyState !== 'loading') {
+                window.__shahPasandUpdateExpiry();
+            }
+        })();
+    </script>
 </body>
 </html>
