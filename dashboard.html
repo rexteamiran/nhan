@@ -54,7 +54,6 @@
     --color-surface: #ffffff;
     --color-bg-alt: var(--slate-100);
     --color-border: var(--slate-200);
-    --ring-color: rgba(99, 102, 241, 0.25);
 
     /* Light Mode slate mappings */
     --slate-50: #f8fafc;
@@ -76,7 +75,6 @@ html.dark {
     --color-surface: var(--slate-800);
     --color-bg-alt: var(--slate-100);
     --color-border: var(--slate-200);
-    --ring-color: rgba(129, 140, 248, 0.25);
 
     /* Dark Mode slate mappings */
     --slate-50: #090d16;
@@ -246,147 +244,17 @@ body {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* --- Micro-Animations --- */
-@keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-@keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 40px color-mix(in srgb, var(--color-primary) 25%, transparent), inset 0 1px 0 rgba(255,255,255,0.08); }
-    50% { box-shadow: 0 0 60px color-mix(in srgb, var(--color-primary) 40%, transparent), inset 0 1px 0 rgba(255,255,255,0.08); }
-}
-@keyframes fade-in-up {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- Interactive Component Classes --- */
-.native-press {
-    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: default;
-}
-.native-press:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
-}
-.native-press:active {
-    transform: scale(0.985);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-}
-
-.btn-shimmer::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-    transform: translateX(-100%);
-}
-.btn-shimmer:hover::after {
-    animation: shimmer 0.6s ease-in-out;
-}
-
-.lock-pulse {
-    animation: pulse-glow 3s ease-in-out infinite;
-}
-
-.fade-in {
-    animation: fade-in-up 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
-}
-
-/* --- Mobile Bottom Navigation --- */
-.mobile-bottom-nav {
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    background: color-mix(in srgb, var(--color-surface) 80%, transparent);
-    border-top: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
-}
-.mobile-tab-item {
-    transition: color 0.2s ease, transform 0.15s ease;
-}
-.mobile-tab-item.active {
-    color: var(--color-primary);
-}
-.mobile-tab-item.active::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 2px;
-    background: var(--color-primary);
-    border-radius: 0 0 2px 2px;
-}
-
-/* --- Top Bar Buttons --- */
-.btn-top-bar {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-.btn-top-bar:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-/* --- Sidebar Navigation --- */
-.nav-item {
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.nav-item.active {
-    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
-    color: var(--color-primary);
-    border-left: 3px solid var(--color-primary);
-    padding-left: calc(1rem - 3px);
-}
-.nav-item.active svg {
-    color: var(--color-primary);
-}
-
-/* --- Eye Button --- */
-.eye-btn {
-    transition: opacity 0.2s ease, transform 0.15s ease;
-}
-.eye-btn:hover {
-    opacity: 1;
-    transform: scale(1.1);
-}
-
-/* --- Login Button --- */
-.login-btn {
-    transition: transform 0.15s ease, box-shadow 0.2s ease;
-}
-.login-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 30px color-mix(in srgb, var(--color-primary) 40%, transparent), inset 0 1px 0 rgba(255,255,255,0.15);
-}
-.login-btn:active {
-    transform: scale(0.98);
-}
-
-/* --- Mobile Save Bar --- */
-.mobile-save-bar {
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    background: color-mix(in srgb, var(--color-surface) 85%, transparent);
-}
-
-/* --- Dashboard Container --- */
-.dash-box-native {
-    background: var(--color-bg);
-}
-
-/* --- Enhanced Form Styling --- */
+/* Perfect form styling with excellent contrast for every theme */
 input[type="text"]:not(.login-input), input[type="password"]:not(.login-input), select, textarea {
     background-color: var(--slate-100) !important;
     color: var(--slate-900) !important;
-    border: 1.5px solid var(--slate-200) !important;
-    transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border-color: var(--slate-200) !important;
+    transition: all 0.2s;
     border-radius: 0.75rem !important;
 }
 input[type="text"]:not(.login-input):focus, input[type="password"]:not(.login-input):focus, select:focus, textarea:focus {
     border-color: var(--color-primary) !important;
-    box-shadow: 0 0 0 3px var(--ring-color) !important;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2) !important;
 }
 html.dark input[type="text"]:not(.login-input), html.dark input[type="password"]:not(.login-input), html.dark select, html.dark textarea {
     background-color: var(--slate-100) !important;
@@ -402,18 +270,10 @@ html.dark select option {
     color: var(--slate-300) !important;
 }
 
-/* --- Custom Scrollbar --- */
-::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--slate-300); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
-html.dark ::-webkit-scrollbar-thumb { background: var(--slate-600); }
-html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
-
-/* --- Accordion --- */
-[data-accordion-content] { max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-
-/* --- Login Input --- */
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+[data-accordion-content] { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
 .login-input {
     background-color: var(--color-bg-alt) !important;
     border-color: var(--color-border) !important;
@@ -421,7 +281,7 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
 }
 .login-input:focus {
     border-color: var(--color-primary) !important;
-    box-shadow: 0 0 0 3px var(--ring-color) !important;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent) !important;
 }
 </style></head>
   <body class="text-[var(--color-text)] h-[100dvh] flex flex-col md:flex-row overflow-hidden selection:bg-primary selection:text-white transition-colors duration-300 bg-[var(--color-bg)]">
@@ -457,7 +317,7 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
                   <h2 class="text-3xl font-black" style="color: var(--color-text);" data-i18n="title">Zagrooo Gateway</h2>
                   <p class="text-sm mt-2" style="color: var(--color-text-muted);">Sign in to manage your gateway</p>
               </div>
-              <div class="rounded-3xl p-px" style="background: linear-gradient(145deg, color-mix(in srgb, var(--color-primary) 45%, transparent), color-mix(in srgb, var(--color-primary) 8%, transparent) 50%, color-mix(in srgb, var(--color-primary) 30%, transparent)); box-shadow: 0 25px 60px rgba(0,0,0,0.15); transition: box-shadow 0.5s ease;">
+              <div class="rounded-3xl p-px" style="background: linear-gradient(145deg, color-mix(in srgb, var(--color-primary) 45%, transparent), color-mix(in srgb, var(--color-primary) 8%, transparent) 50%, color-mix(in srgb, var(--color-primary) 30%, transparent)); box-shadow: 0 25px 60px rgba(0,0,0,0.15);">
                   <div class="rounded-3xl p-8" style="background: var(--color-surface);">
                       <div class="flex items-center gap-2 mb-7 pb-6" style="border-bottom: 1px solid var(--color-border);">
                           <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#22c55e;box-shadow:0 0 8px #22c55e;"></span>
@@ -491,7 +351,7 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
       <div id="dash-box" class="hidden w-full h-full flex-col md:flex-row relative dash-box-native" style="padding-top: env(safe-area-inset-top, 0px);">
 
           <!-- SIDEBAR (Desktop) -->
-           <aside class="hidden md:flex w-64 bg-[var(--color-surface)] border-e border-slate-200/50 dark:border-darkborder/50 flex-col z-20 shrink-0 shadow-[4px_0_24px_rgba(0,0,0,0.03)]">
+          <aside class="hidden md:flex w-64 bg-[var(--color-surface)]  border-e border-slate-200 dark:border-darkborder flex-col z-20 shrink-0">
               <div class="flex items-center p-6 border-b border-slate-100 dark:border-darkborder/50">
                   <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-900/40 text-primary flex items-center justify-center me-3 shrink-0"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
                   <div class="flex flex-col">
@@ -543,7 +403,7 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
 
           <!-- MAIN CONTENT AREA -->
           <main class="flex-1 flex flex-col h-full overflow-hidden">
-               <header class="h-14 md:h-24 shrink-0 flex items-center px-4 md:px-10 z-10 pt-[env(safe-area-inset-top,0px)] md:pt-0 bg-[var(--color-surface)]/90 backdrop-blur-xl border-b border-[var(--color-border)]/50">
+              <header class="h-14 md:h-24 shrink-0 flex items-center px-4 md:px-10 z-10 pt-[env(safe-area-inset-top,0px)] md:pt-0 bg-[var(--color-surface)] backdrop-blur-xl border-b border-[var(--color-border)]">
                   <h2 id="view-title" class="text-lg md:text-3xl font-black text-slate-800 dark:text-white mt-0 md:mt-2">Overview</h2>
               </header>
 
@@ -607,37 +467,37 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
                       <div id="view-overview" class="space-y-3 md:space-y-6 block">
                           <!-- User Summary Cards -->
                           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-4">
-                               <div class="native-press bg-[var(--color-surface)] rounded-xl md:rounded-2xl p-3 md:p-4 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200/70 dark:border-darkborder/70">
-                                   <div class="flex items-center justify-between mb-1 md:mb-2">
-                                       <span class="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="ov_total_users">Total Users</span>
+                              <div class="native-press bg-[var(--color-surface)]  rounded-xl md:rounded-2xl p-3 md:p-4 shadow-sm border border-slate-200 dark:border-darkborder">
+                                  <div class="flex items-center justify-between mb-1 md:mb-2">
+                                      <span class="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="ov_total_users">Total Users</span>
                                       <div class="p-1.5 md:p-2 bg-primary/10 text-primary rounded-md md:rounded-lg"><svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656-.126-1.283-.356-1.857M12 4.354a4 4 0 110 5.292"></path></svg></div>
                                   </div>
                                   <p id="ov-total-users" class="text-xl md:text-2xl font-black text-slate-800 dark:text-white">-</p>
                               </div>
-                               <div class="native-press bg-[var(--color-surface)] rounded-xl md:rounded-2xl p-3 md:p-4 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200/70 dark:border-darkborder/70">
-                                   <div class="flex items-center justify-between mb-1 md:mb-2">
-                                       <span class="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="ov_active_users">Active</span>
+                              <div class="native-press bg-[var(--color-surface)]  rounded-xl md:rounded-2xl p-3 md:p-4 shadow-sm border border-slate-200 dark:border-darkborder">
+                                  <div class="flex items-center justify-between mb-1 md:mb-2">
+                                      <span class="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="ov_active_users">Active</span>
                                       <div class="p-1.5 md:p-2 bg-emerald-500/10 text-emerald-500 rounded-md md:rounded-lg"><svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
                                   </div>
                                   <p id="ov-active-users" class="text-xl md:text-2xl font-black text-emerald-600 dark:text-emerald-400">-</p>
                               </div>
-                               <div class="native-press bg-[var(--color-surface)] rounded-xl md:rounded-2xl p-3 md:p-4 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200/70 dark:border-darkborder/70">
-                                   <div class="flex items-center justify-between mb-1 md:mb-2">
-                                       <span class="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="ov_paused_users">Paused</span>
+                              <div class="native-press bg-[var(--color-surface)]  rounded-xl md:rounded-2xl p-3 md:p-4 shadow-sm border border-slate-200 dark:border-darkborder">
+                                  <div class="flex items-center justify-between mb-1 md:mb-2">
+                                      <span class="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="ov_paused_users">Paused</span>
                                       <div class="p-1.5 md:p-2 bg-amber-500/10 text-amber-500 rounded-md md:rounded-lg"><svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
                                   </div>
                                   <p id="ov-paused-users" class="text-xl md:text-2xl font-black text-amber-600 dark:text-amber-400">-</p>
                               </div>
-                               <div class="native-press bg-[var(--color-surface)] rounded-xl md:rounded-2xl p-3 md:p-4 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200/70 dark:border-darkborder/70">
-                                   <div class="flex items-center justify-between mb-1 md:mb-2">
-                                       <span class="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="ov_auto_disabled">Auto-Disabled</span>
+                              <div class="native-press bg-[var(--color-surface)]  rounded-xl md:rounded-2xl p-3 md:p-4 shadow-sm border border-slate-200 dark:border-darkborder">
+                                  <div class="flex items-center justify-between mb-1 md:mb-2">
+                                      <span class="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="ov_auto_disabled">Auto-Disabled</span>
                                       <div class="p-1.5 md:p-2 bg-red-500/10 text-red-500 rounded-md md:rounded-lg"><svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path></svg></div>
                                   </div>
                                   <p id="ov-auto-disabled" class="text-xl md:text-2xl font-black text-red-600 dark:text-red-400">-</p>
                               </div>
-                               <div class="native-press bg-[var(--color-surface)] rounded-xl md:rounded-2xl p-3 md:p-4 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200/70 dark:border-darkborder/70">
-                                   <div class="flex items-center justify-between mb-1 md:mb-2">
-                                       <span class="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="ov_expired_users">Expired</span>
+                              <div class="native-press bg-[var(--color-surface)]  rounded-xl md:rounded-2xl p-3 md:p-4 shadow-sm border border-slate-200 dark:border-darkborder">
+                                  <div class="flex items-center justify-between mb-1 md:mb-2">
+                                      <span class="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="ov_expired_users">Expired</span>
                                       <div class="p-1.5 md:p-2 bg-slate-500/10 text-slate-500 rounded-md md:rounded-lg"><svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
                                   </div>
                                   <p id="ov-expired-users" class="text-xl md:text-2xl font-black text-slate-600 dark:text-slate-400">-</p>
@@ -646,33 +506,33 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
 
                           <!-- Traffic & System Cards -->
                           <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4">
-                               <div class="native-press bg-[var(--color-surface)] rounded-xl md:rounded-2xl p-3 md:p-5 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200/70 dark:border-darkborder/70">
-                                   <div class="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-                                       <div class="p-1.5 md:p-2.5 bg-violet-500/10 text-violet-500 rounded-lg md:rounded-xl"><svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg></div>
-                                        <span class="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider" data-i18n="ov_total_traffic">Total Traffic</span>
+                              <div class="native-press bg-[var(--color-surface)]  rounded-xl md:rounded-2xl p-3 md:p-5 shadow-sm border border-slate-200 dark:border-darkborder">
+                                  <div class="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                                      <div class="p-1.5 md:p-2.5 bg-violet-500/10 text-violet-500 rounded-lg md:rounded-xl"><svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg></div>
+                                       <span class="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider" data-i18n="ov_total_traffic">Total Traffic</span>
                                   </div>
                                    <p id="ov-total-traffic" class="text-base md:text-xl font-black text-slate-800 dark:text-white">- GB</p>
                                   <p class="text-[9px] md:text-[10px] text-slate-400 mt-0.5 md:mt-1"><span id="ov-total-reqs">-</span> <span data-i18n="ov_requests">requests</span></p>
                               </div>
-                               <div class="native-press bg-[var(--color-surface)] rounded-xl md:rounded-2xl p-3 md:p-5 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200/70 dark:border-darkborder/70">
-                                   <div class="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-                                       <div class="p-1.5 md:p-2.5 bg-cyan-500/10 text-cyan-500 rounded-lg md:rounded-xl"><svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg></div>
-                                        <span class="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider" data-i18n="ov_today_traffic">Today's Traffic</span>
+                              <div class="native-press bg-[var(--color-surface)]  rounded-xl md:rounded-2xl p-3 md:p-5 shadow-sm border border-slate-200 dark:border-darkborder">
+                                  <div class="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                                      <div class="p-1.5 md:p-2.5 bg-cyan-500/10 text-cyan-500 rounded-lg md:rounded-xl"><svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg></div>
+                                       <span class="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider" data-i18n="ov_today_traffic">Today's Traffic</span>
                                   </div>
                                   <p id="ov-today-traffic" class="text-base md:text-xl font-black text-slate-800 dark:text-white">- GB</p>
                                   <p class="text-[9px] md:text-[10px] text-slate-400 mt-0.5 md:mt-1"><span id="ov-today-reqs">-</span> <span data-i18n="ov_requests">requests</span></p>
                               </div>
-                               <div class="native-press bg-[var(--color-surface)] rounded-xl md:rounded-2xl p-3 md:p-5 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200/70 dark:border-darkborder/70">
-                                   <div class="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-                                       <div class="p-1.5 md:p-2.5 bg-blue-500/10 text-blue-500 rounded-lg md:rounded-xl"><svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728m-9.9-2.829a5 5 0 010-7.07m7.072 0a5 5 0 010 7.07M13 12a1 1 0 11-2 0 1 1 0 012 0z"></path></svg></div>
-                                        <span class="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider" data-i18n="ov_active_conns">Active Connections</span>
+                              <div class="native-press bg-[var(--color-surface)]  rounded-xl md:rounded-2xl p-3 md:p-5 shadow-sm border border-slate-200 dark:border-darkborder">
+                                  <div class="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                                      <div class="p-1.5 md:p-2.5 bg-blue-500/10 text-blue-500 rounded-lg md:rounded-xl"><svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728m-9.9-2.829a5 5 0 010-7.07m7.072 0a5 5 0 010 7.07M13 12a1 1 0 11-2 0 1 1 0 012 0z"></path></svg></div>
+                                       <span class="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider" data-i18n="ov_active_conns">Active Connections</span>
                                   </div>
                                   <p id="ov-active-conns" class="text-base md:text-xl font-black text-slate-800 dark:text-white">-</p>
                               </div>
-                               <div class="native-press bg-[var(--color-surface)] rounded-xl md:rounded-2xl p-3 md:p-5 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200/70 dark:border-darkborder/70">
-                                   <div class="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-                                       <div class="p-1.5 md:p-2.5 bg-indigo-500/10 text-indigo-500 rounded-lg md:rounded-xl"><svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div>
-                                        <span class="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider" data-i18n="ov_system">System</span>
+                              <div class="native-press bg-[var(--color-surface)]  rounded-xl md:rounded-2xl p-3 md:p-5 shadow-sm border border-slate-200 dark:border-darkborder">
+                                  <div class="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                                      <div class="p-1.5 md:p-2.5 bg-indigo-500/10 text-indigo-500 rounded-lg md:rounded-xl"><svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div>
+                                       <span class="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider" data-i18n="ov_system">System</span>
                                   </div>
                                   <p id="ov-version" class="text-base md:text-xl font-black text-slate-800 dark:text-white">-</p>
                               </div>
@@ -681,7 +541,7 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
                           <!-- Recent Activity & Quick Actions Row -->
                           <div class="grid grid-cols-1 lg:grid-cols-3 gap-3 md:gap-4">
                               <!-- Recent Activity -->
-                               <div class="lg:col-span-2 bg-[var(--color-surface)] rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow duration-300 border border-slate-200/70 dark:border-darkborder/70">
+                              <div class="lg:col-span-2 bg-[var(--color-surface)]  rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm border border-slate-200 dark:border-darkborder">
                                   <div class="flex items-center justify-between mb-3 md:mb-4">
                                       <h3 class="text-xs md:text-sm uppercase font-bold text-slate-500 tracking-wider" data-i18n="ov_recent_activity">Recent Activity</h3>
                                       <button onclick="switchTab('logs')" class="text-[11px] md:text-xs text-primary hover:text-primary/80 font-bold transition-colors" data-i18n="ov_view_all">View All →</button>
@@ -691,7 +551,7 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
                                   </div>
                               </div>
                               <!-- Quick Actions -->
-                               <div class="bg-[var(--color-surface)] rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow duration-300 border border-slate-200/70 dark:border-darkborder/70">
+                              <div class="bg-[var(--color-surface)]  rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm border border-slate-200 dark:border-darkborder">
                                   <h3 class="text-xs md:text-sm uppercase font-bold text-slate-500 tracking-wider mb-3 md:mb-4" data-i18n="ov_quick_actions">Quick Actions</h3>
                                   <div class="grid grid-cols-2 gap-2 md:grid-cols-1 md:gap-3">
                                        <button onclick="openAddUserPage()" class="native-press flex items-center justify-center md:justify-start gap-2 md:gap-3 px-3 py-2.5 md:px-4 md:py-3 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg md:rounded-xl font-bold text-xs md:text-sm transition-colors">
@@ -722,35 +582,35 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
 
                       <!-- NETWORK/METRICS VIEW -->
                       <div id="view-network" class="hidden space-y-6">
-                            <div class="bg-[var(--color-surface)]/70 /70 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/20 dark:border-white/10 transition-shadow duration-300 mb-6">
+                            <div class="bg-[var(--color-surface)]/70 /70 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/20 dark:border-white/10 mb-6">
                               <h3 class="text-sm uppercase font-bold text-slate-500 tracking-wider mb-4" data-i18n="metrics_live">Live Profile Usage</h3>
                               <div id="usage-metrics-container" class="flex flex-col">
                                   <p class="text-xs text-slate-400 text-center py-4" data-i18n="no_metrics">No active connection data yet.</p>
                               </div>
                           </div>
                           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                              <div class="bg-[var(--color-surface)] p-6 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200/70 dark:border-darkborder/70 relative overflow-hidden group">
+                              <div class="bg-[var(--color-surface)]  p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-darkborder relative overflow-hidden group">
                                   <svg class="w-8 h-8 text-blue-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
                                   <p class="text-xs uppercase font-bold text-slate-400 mb-1" data-i18n="stat_ip">Origin IP</p>
                                   <p id="net-ip" class="text-xl md:text-2xl font-black font-mono">...</p>
                               </div>
-                              <div class="bg-[var(--color-surface)] p-6 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200/70 dark:border-darkborder/70 relative overflow-hidden group">
+                              <div class="bg-[var(--color-surface)]  p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-darkborder relative overflow-hidden group">
                                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
                                   <p class="text-xs uppercase font-bold text-slate-400 mb-1" data-i18n="stat_dc">Edge Node</p>
                                   <p id="net-colo" class="text-xl md:text-2xl font-black font-mono">...</p>
                               </div>
-                              <div class="bg-[var(--color-surface)] p-6 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200/70 dark:border-darkborder/70 relative overflow-hidden group sm:col-span-2 lg:col-span-1">
+                              <div class="bg-[var(--color-surface)]  p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-darkborder relative overflow-hidden group sm:col-span-2 lg:col-span-1">
                                   <svg class="w-8 h-8 text-purple-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                   <p class="text-xs uppercase font-bold text-slate-400 mb-1" data-i18n="stat_loc">Data Region</p>
                                   <p id="net-loc" class="text-lg font-bold truncate">...</p>
                               </div>
-                              <div class="bg-[var(--color-surface)] p-6 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200/70 dark:border-darkborder/70 relative overflow-hidden group sm:col-span-2 lg:col-span-1">
+                              <div class="bg-[var(--color-surface)]  p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-darkborder relative overflow-hidden group sm:col-span-2 lg:col-span-1">
                                   <svg class="w-8 h-8 text-blue-500 mb-4" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l-4-2"></path></svg>
                                   <p class="text-xs uppercase font-bold text-slate-400 mb-1" data-i18n="stat_datetime">Date Time</p>
                                   <p id="net-datetime" class="text-lg font-bold truncate text-center" dir="rtl">...</p>
                               </div>
                               <!-- Diagnostics Segment -->
-                              <div class="bg-[var(--color-surface)] p-6 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200/70 dark:border-darkborder/70 relative overflow-hidden group sm:col-span-2 lg:col-span-3">
+                              <div class="bg-[var(--color-surface)]  p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-darkborder relative overflow-hidden group sm:col-span-2 lg:col-span-3">
                                   <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                                       <div>
                                           <h3 class="text-sm uppercase font-bold text-slate-400 mb-1" data-i18n="ping_test_title">Latency Diagnostics</h3>
@@ -784,7 +644,7 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
 
                       <!-- SETTINGS VIEW -->
                       <div id="view-settings" class="hidden">
-                          <div class="bg-[var(--color-surface)]/70 /70 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/20 dark:border-white/10 transition-shadow duration-300 grid grid-cols-1 md:grid-cols-2 gap-5">
+                          <div class="bg-[var(--color-surface)]/70 /70 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/20 dark:border-white/10 grid grid-cols-1 md:grid-cols-2 gap-5">
                               <div class="space-y-1 mb-4">
         <label class="block text-sm font-bold text-slate-600 dark:text-slate-300 ms-1 mb-1 flex items-center gap-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
@@ -932,7 +792,7 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
                                       <span class="text-sm font-bold text-slate-700 dark:text-slate-300" data-i18n="lbl_silent">Silent UI Alerts</span>
                                       <div class="relative inline-flex items-center cursor-pointer">
                                           <input type="checkbox" id="cfg-silent" class="sr-only peer">
-                                          <div class="w-11 h-6 bg-slate-300 dark:bg-slate-600 rounded-full transition-all duration-300 peer peer-checked:after:translate-x-5 rtl:peer-checked:after:-translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-[var(--color-surface)] after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-500 peer-checked:bg-primary"></div>
+                                          <div class="w-11 h-6 bg-slate-300 dark:bg-slate-600 rounded-full peer peer-checked:after:translate-x-5 rtl:peer-checked:after:-translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-[var(--color-surface)] after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-500 peer-checked:bg-primary"></div>
                                       </div>
                                   </label>
                                   <label class="flex-1 flex items-center justify-between cursor-pointer bg-red-50 dark:bg-red-900/10 p-4 rounded-2xl border border-red-200 dark:border-red-900/30">
@@ -951,7 +811,7 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
                                        </div>
                                        <div class="relative inline-flex items-center">
                                            <input type="checkbox" id="cfg-auto-update" class="sr-only peer">
-                                           <div class="w-11 h-6 bg-slate-300 dark:bg-slate-600 rounded-full transition-all duration-300 peer peer-checked:after:translate-x-5 rtl:peer-checked:after:-translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-[var(--color-surface)] after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-500 peer-checked:bg-emerald-500"></div>
+                                           <div class="w-11 h-6 bg-slate-300 dark:bg-slate-600 rounded-full peer peer-checked:after:translate-x-5 rtl:peer-checked:after:-translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-[var(--color-surface)] after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-500 peer-checked:bg-emerald-500"></div>
                                        </div>
                                    </label>
                                    <div id="auto-update-format-wrap" class="hidden">
@@ -976,7 +836,7 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
                                 </div>
 
                                 <!-- API Keys Management -->
-                                <div class="bg-[var(--color-surface)]/70 /70 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/20 dark:border-white/10 transition-shadow duration-300 md:col-span-2 space-y-4">
+                                <div class="bg-[var(--color-surface)]/70 /70 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/20 dark:border-white/10 md:col-span-2 space-y-4">
                                     <div class="flex items-center justify-between">
                                         <div>
                                             <h3 class="text-sm font-bold text-slate-700 dark:text-slate-200 flex items-center gap-2">
@@ -997,7 +857,7 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
                                 </div>
 
                                 <!-- Import/Export Config Area -->
-                               <div class="bg-[var(--color-surface)]/70 /70 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/20 dark:border-white/10 transition-shadow duration-300 md:col-span-2 space-y-4">
+                               <div class="bg-[var(--color-surface)]/70 /70 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/20 dark:border-white/10 md:col-span-2 space-y-4">
                                   <h3 class="text-sm uppercase font-bold text-slate-400 tracking-wider" data-i18n="backup_restore_title">Backup &amp; Restore</h3>
                                   <div class="flex flex-col sm:flex-row gap-4">
                                       <button onclick="exportConfig()" class="flex-1 py-3 px-4 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold rounded-xl transition-colors text-sm" data-i18n="export_btn">
@@ -1016,7 +876,7 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
                       <div id="view-advanced" class="hidden space-y-4">
 
                           <!-- Section: Network & DNS -->
-                          <div class="bg-[var(--color-surface)] rounded-2xl border border-slate-200/70 dark:border-darkborder/70 shadow-sm overflow-hidden" data-accordion="">
+                          <div class="bg-[var(--color-surface)]  rounded-2xl border border-slate-200 dark:border-darkborder overflow-hidden" data-accordion="">
                               <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between px-5 py-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                                   <div class="flex items-center gap-3">
                                       <span class="text-lg">🌐</span>
@@ -1066,7 +926,7 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
                           </div>
 
                           <!-- Section: Proxy & Relay -->
-                          <div class="bg-[var(--color-surface)] rounded-2xl border border-slate-200/70 dark:border-darkborder/70 shadow-sm overflow-hidden" data-accordion="">
+                          <div class="bg-[var(--color-surface)]  rounded-2xl border border-slate-200 dark:border-darkborder overflow-hidden" data-accordion="">
                               <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between px-5 py-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                                   <div class="flex items-center gap-3">
                                       <span class="text-lg">🔗</span>
@@ -1094,7 +954,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
                                           </div>
                                           <div class="relative inline-flex items-center cursor-pointer">
                                               <input type="checkbox" id="cfg-direct-configs" class="sr-only peer">
-                                              <div class="w-11 h-6 bg-slate-300 dark:bg-slate-600 rounded-full transition-all duration-300 peer peer-checked:after:translate-x-5 rtl:peer-checked:after:-translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-[var(--color-surface)] after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-500 peer-checked:bg-primary"></div>
+                                              <div class="w-11 h-6 bg-slate-300 dark:bg-slate-600 rounded-full peer peer-checked:after:translate-x-5 rtl:peer-checked:after:-translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-[var(--color-surface)] after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-500 peer-checked:bg-primary"></div>
                                           </div>
                                       </label>
                                   </div>
@@ -1103,7 +963,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
 
                           
                           <!-- Section: Custom Routing -->
-                          <div class="bg-[var(--color-surface)] rounded-2xl border border-slate-200/70 dark:border-darkborder/70 shadow-sm overflow-hidden" data-accordion="">
+                          <div class="bg-[var(--color-surface)]  rounded-2xl border border-slate-200 dark:border-darkborder overflow-hidden" data-accordion="">
                               <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between px-5 py-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                                   <div class="flex items-center gap-3">
                                       <span class="text-lg">🔀</span>
@@ -1126,7 +986,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
                               </div>
                           </div>
                           <!-- Section: Subscription -->
-                          <div class="bg-[var(--color-surface)] rounded-2xl border border-slate-200/70 dark:border-darkborder/70 shadow-sm overflow-hidden" data-accordion="">
+                          <div class="bg-[var(--color-surface)]  rounded-2xl border border-slate-200 dark:border-darkborder overflow-hidden" data-accordion="">
                               <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between px-5 py-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                                   <div class="flex items-center gap-3">
                                       <span class="text-lg">📝</span>
@@ -1185,7 +1045,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
                           </div>
 
                           <!-- Section: Protocol -->
-                          <div class="bg-[var(--color-surface)] rounded-2xl border border-slate-200/70 dark:border-darkborder/70 shadow-sm overflow-hidden" data-accordion="">
+                          <div class="bg-[var(--color-surface)]  rounded-2xl border border-slate-200 dark:border-darkborder overflow-hidden" data-accordion="">
                               <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between px-5 py-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                                   <div class="flex items-center gap-3">
                                       <span class="text-lg">⚡</span>
@@ -1199,14 +1059,14 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
                                           <span class="text-sm font-bold text-slate-700 dark:text-slate-300" data-i18n="lbl_tfo">TCP Fast Open</span>
                                           <div class="relative inline-flex items-center cursor-pointer">
                                               <input type="checkbox" id="cfg-tfo" class="sr-only peer">
-                                              <div class="w-11 h-6 bg-slate-300 dark:bg-slate-600 rounded-full transition-all duration-300 peer peer-checked:after:translate-x-5 rtl:peer-checked:after:-translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-[var(--color-surface)] after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-500 peer-checked:bg-primary"></div>
+                                              <div class="w-11 h-6 bg-slate-300 dark:bg-slate-600 rounded-full peer peer-checked:after:translate-x-5 rtl:peer-checked:after:-translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-[var(--color-surface)] after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-500 peer-checked:bg-primary"></div>
                                           </div>
                                       </label>
                                       <label class="flex-1 flex items-center justify-between cursor-pointer bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl">
                                           <span class="text-sm font-bold text-slate-700 dark:text-slate-300" data-i18n="lbl_ech">Secure Hello (ECH)</span>
                                           <div class="relative inline-flex items-center cursor-pointer">
                                               <input type="checkbox" id="cfg-ech" class="sr-only peer">
-                                              <div class="w-11 h-6 bg-slate-300 dark:bg-slate-600 rounded-full transition-all duration-300 peer peer-checked:after:translate-x-5 rtl:peer-checked:after:-translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-[var(--color-surface)] after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-500 peer-checked:bg-primary"></div>
+                                              <div class="w-11 h-6 bg-slate-300 dark:bg-slate-600 rounded-full peer peer-checked:after:translate-x-5 rtl:peer-checked:after:-translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-[var(--color-surface)] after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-500 peer-checked:bg-primary"></div>
                                           </div>
                                       </label>
                                   </div>
@@ -1238,7 +1098,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
 
                           <!-- Modal: Add Other Node -->
                            <div id="modal-add-node" class="hidden fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 pb-4 sm:p-4 bg-slate-900/50 backdrop-blur-sm">
-                               <div class="bg-[var(--color-surface)] rounded-t-3xl sm:rounded-3xl w-full sm:max-w-md max-h-[calc(100vh-2rem)] sm:max-h-[85vh] flex flex-col shadow-2xl border border-slate-200/70 dark:border-darkborder/70">
+                               <div class="bg-[var(--color-surface)]  rounded-t-3xl sm:rounded-3xl w-full sm:max-w-md max-h-[calc(100vh-2rem)] sm:max-h-[85vh] flex flex-col shadow-2xl border border-slate-200 dark:border-darkborder">
                                   <div class="px-6 pt-6 pb-4">
                                       <h3 class="text-lg font-bold" data-i18n="add_node_title">Add External Node</h3>
                                       <p class="text-xs text-slate-400 mt-1" data-i18n="add_node_desc">Enter the URL and API Key of the external panel.</p>
@@ -1262,7 +1122,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
                           </div>
 
                           <!-- Section: Telegram -->
-                          <div class="bg-[var(--color-surface)] rounded-2xl border border-slate-200/70 dark:border-darkborder/70 shadow-sm overflow-hidden" data-accordion="">
+                          <div class="bg-[var(--color-surface)]  rounded-2xl border border-slate-200 dark:border-darkborder overflow-hidden" data-accordion="">
                               <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between px-5 py-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                                   <div class="flex items-center gap-3">
                                       <span class="text-lg">🤖</span>
@@ -1296,7 +1156,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
                           </div>
 
                           <!-- Section: Cloudflare -->
-                          <div class="bg-[var(--color-surface)] rounded-2xl border border-slate-200/70 dark:border-darkborder/70 shadow-sm overflow-hidden" data-accordion="">
+                          <div class="bg-[var(--color-surface)]  rounded-2xl border border-slate-200 dark:border-darkborder overflow-hidden" data-accordion="">
                               <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between px-5 py-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                                   <div class="flex items-center gap-3">
                                       <span class="text-lg">☁️</span>
@@ -1352,7 +1212,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
                           <!-- USERS VIEW -->
                       <div id="view-users" class="hidden space-y-4">
                           <!-- Compact Stats Bar -->
-                          <div class="bg-[var(--color-surface)] rounded-2xl border border-slate-200/70 dark:border-darkborder/70 p-4 flex flex-wrap items-center gap-4 md:gap-6">
+                          <div class="bg-[var(--color-surface)]  rounded-2xl border border-slate-200 dark:border-darkborder p-4 flex flex-wrap items-center gap-4 md:gap-6">
                               <div class="flex items-center gap-2">
                                   <div class="p-1.5 bg-primary/10 text-primary rounded-lg"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></div>
                                   <div><span class="text-[10px] font-bold text-slate-400 uppercase" data-i18n="stat_total_subscribers">Total</span><span id="stat-total-users" class="ms-1.5 text-sm font-black text-slate-800 dark:text-white">0</span></div>
@@ -1391,7 +1251,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
                               </div>
                           </div>
 
-                          <div class="bg-[var(--color-surface)] rounded-3xl p-4 md:p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200/70 dark:border-darkborder/70 relative overflow-hidden">
+                          <div class="bg-[var(--color-surface)]  rounded-3xl p-4 md:p-6 shadow-sm border border-slate-200 dark:border-darkborder relative overflow-hidden">
                               <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between mb-4 md:mb-6 gap-3">
                                    <h3 class="text-sm uppercase font-bold text-slate-500 tracking-wider" data-i18n="sub_directory_title">Subscriber Directory</h3>
                                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
@@ -1414,7 +1274,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
 
                        <!-- PAGE: Add User -->
                        <div id="view-add-user" class="hidden h-full flex flex-col">
-                           <div class="bg-[var(--color-surface)] rounded-2xl md:rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200/70 dark:border-darkborder/70 overflow-hidden flex flex-col flex-1 min-h-0">
+                           <div class="bg-[var(--color-surface)]  rounded-2xl md:rounded-3xl shadow-sm border border-slate-200 dark:border-darkborder overflow-hidden flex flex-col flex-1 min-h-0">
                                <div class="flex items-center gap-3 px-5 py-4 border-b border-slate-200 dark:border-darkborder shrink-0">
                                    <button onclick="closeAddUserPage()" class="native-press p-2 -ms-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                                        <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
@@ -1518,7 +1378,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
                                        </div>
                                    </div>
                                </div>
-                               <div class="px-5 py-4 border-t border-slate-200/50 dark:border-darkborder/50 bg-[var(--color-surface)] flex justify-between items-center shrink-0">
+                               <div class="px-5 py-4 border-t border-slate-200 dark:border-darkborder bg-[var(--color-surface)]  flex justify-between items-center shrink-0">
                                    <button onclick="closeAddUserPage()" class="px-5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold text-sm" data-i18n="btn_cancel">Cancel</button>
                                    <button onclick="commitAddUser()" class="native-press px-6 py-2.5 rounded-xl bg-primary text-white font-bold text-sm shadow-sm" data-i18n="save_btn_user">Save User</button>
                                </div>
@@ -1527,7 +1387,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
 
                        <!-- PAGE: Edit User -->
                        <div id="view-edit-user" class="hidden h-full flex flex-col">
-                           <div class="bg-[var(--color-surface)] rounded-2xl md:rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200/70 dark:border-darkborder/70 overflow-hidden flex flex-col flex-1 min-h-0">
+                           <div class="bg-[var(--color-surface)]  rounded-2xl md:rounded-3xl shadow-sm border border-slate-200 dark:border-darkborder overflow-hidden flex flex-col flex-1 min-h-0">
                                <div class="flex items-center gap-3 px-5 py-4 border-b border-slate-200 dark:border-darkborder shrink-0">
                                    <button onclick="closeEditUserPage()" class="native-press p-2 -ms-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                                        <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
@@ -1632,7 +1492,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
                                        </div>
                                    </div>
                                </div>
-                               <div class="px-5 py-4 border-t border-slate-200/50 dark:border-darkborder/50 bg-[var(--color-surface)] flex justify-between items-center shrink-0">
+                               <div class="px-5 py-4 border-t border-slate-200 dark:border-darkborder bg-[var(--color-surface)]  flex justify-between items-center shrink-0">
                                    <button onclick="closeEditUserPage()" class="px-5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold text-sm" data-i18n="btn_cancel">Cancel</button>
                                    <button onclick="commitEditUser()" class="native-press px-6 py-2.5 rounded-xl bg-primary text-white font-bold text-sm shadow-sm" data-i18n="btn_save_changes">Save Changes</button>
                                </div>
@@ -1641,7 +1501,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
 
                       <!-- LOGS VIEW -->
                       <div id="view-logs" class="hidden space-y-6">
-                          <div class="bg-[var(--color-surface)]/70 /70 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/20 dark:border-white/10 transition-shadow duration-300 relative overflow-hidden">
+                          <div class="bg-[var(--color-surface)]/70 /70 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-white/20 dark:border-white/10 relative overflow-hidden">
                               <div class="flex items-center justify-between mb-6">
                                   <h3 class="text-sm uppercase font-bold text-slate-500 tracking-wider" data-i18n="tab_logs">System Activity Logs</h3>
                                   <button onclick="loadLogs()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-bold transition-colors">
@@ -1656,11 +1516,11 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
 
                       <!-- HELP & FAQ VIEW -->
                       <div id="view-help" class="hidden space-y-6">
-                          <div class="bg-[var(--color-surface)]/70 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-slate-200 dark:border-darkborder/50 transition-shadow duration-300 relative overflow-hidden">
+                          <div class="bg-[var(--color-surface)]/70 backdrop-blur-xl rounded-3xl p-6 shadow-lg border border-slate-200 dark:border-darkborder/50 relative overflow-hidden">
                               <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                                   <div>
                                       <h3 class="text-lg font-black text-slate-800 dark:text-white" data-i18n="help_title">Help & Common Questions</h3>
-                                      <p class="text-xs text-slate-500 dark:text-slate-400 mt-1" data-i18n="help_desc">Learn about fields, features, and troubleshooting on your zagrooo Gateway.</p>
+                                      <p class="text-xs text-slate-500 dark:text-slate-400 mt-1" data-i18n="help_desc">Learn about fields, features, and troubleshooting on your Nahan Gateway.</p>
                                   </div>
                                   <!-- Search bar -->
                                   <div class="relative w-full md:w-72">
@@ -1674,12 +1534,12 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
                                       <button onclick="toggleFAQ(this)" class="w-full flex items-center justify-between text-start focus:outline-none font-bold text-slate-800 dark:text-slate-200 hover:text-primary transition-colors">
                                           <span class="flex items-center gap-2">
                                               <span class="text-primary text-sm">❓</span>
-                                              <span class="text-sm md:text-base">What is zagrooo Gateway? / دروازه زاگرووو چیست؟</span>
+                                              <span class="text-sm md:text-base">What is Nahan Gateway? / دروازه زاگرووو چیست؟</span>
                                           </span>
                                           <svg class="w-5 h-5 transform transition-transform duration-200 shrink-0 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                       </button>
                                       <div class="faq-content hidden mt-3 pt-3 border-t border-slate-200/50 dark:border-darkborder/50 text-xs md:text-sm text-slate-600 dark:text-slate-400 space-y-2 leading-relaxed">
-                                          <p><strong>English:</strong> Zagrooo Gateway is an advanced, high-performance, single-file subscription and proxy manager built directly for Cloudflare Workers. It acts as a gateway to securely distribute configurations (Clash, Sing-box, Trojan, VMess) to clients while concealing the main panel's backend server behind Cloudflare's global edge network.</p>
+                                          <p><strong>English:</strong> Nahan Gateway is an advanced, high-performance, single-file subscription and proxy manager built directly for Cloudflare Workers. It acts as a gateway to securely distribute configurations (Clash, Sing-box, Trojan, VMess) to clients while concealing the main panel's backend server behind Cloudflare's global edge network.</p>
                                           <p class="border-t border-dashed border-slate-200 dark:border-darkborder/50 pt-2"><strong>فارسی:</strong> دروازه زاگرووو یک سیستم مدیریت اشتراک و پروکسی پیشرفته و تک‌فایلی است که برای کلودفلر ورکرز توسعه یافته است. این سیستم به عنوان یک دروازه عمل می‌کند تا کانفیگ‌ها (Clash, Sing-box, Trojan, VMess) را به صورت امن توزیع کند و سرور اصلی شما را پشت شبکه جهانی کلودفلر زاگرووو کند.</p>
                                       </div>
                                   </div>
@@ -1777,7 +1637,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
               </div>
 
               <!-- Save Bar (Docked to bottom of main content) -->
-              <div class="shrink-0 border-t border-slate-200/50 dark:border-darkborder/50 p-4 flex justify-between md:justify-end items-center z-20 mobile-save-bar">
+              <div class="shrink-0 bg-[var(--color-surface)]  border-t border-slate-200 dark:border-darkborder p-4 flex justify-between md:justify-end items-center z-20 mobile-save-bar">
                   <span id="save-status" class="text-sm font-bold text-slate-500 md:me-4"></span>
                   <button onclick="doSave()" class="native-press px-8 py-3 bg-primary text-white font-bold rounded-xl shadow-lg hover:opacity-90 transition-opacity" data-i18n="save_btn">Save Config</button>
               </div>
@@ -1827,7 +1687,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
 
       <!-- QR Code Modal (Enhanced) -->
       <div id="qr-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
-          <div class="bg-[var(--color-surface)] rounded-3xl p-8 max-w-sm w-full shadow-2xl border border-slate-200/70 dark:border-darkborder/70 relative">
+          <div class="bg-[var(--color-surface)]  rounded-3xl p-8 max-w-sm w-full shadow-2xl border border-slate-200 dark:border-darkborder relative">
               <button onclick="closeQRModal()" class="absolute top-4 end-4 text-slate-400 hover:text-slate-800 dark:hover:text-white">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
               </button>
@@ -1844,7 +1704,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
 
       <!-- Modal: Version Update Highlights -->
       <div id="modal-version-update" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-[101] hidden items-center justify-center p-4">
-          <div class="bg-[var(--color-surface)] rounded-3xl p-8 max-w-lg w-full shadow-2xl border border-slate-200/70 dark:border-darkborder/70 relative overflow-hidden transform transition-all duration-300">
+          <div class="bg-[var(--color-surface)]  rounded-3xl p-8 max-w-lg w-full shadow-2xl border border-slate-200 dark:border-darkborder relative overflow-hidden transform transition-all duration-300">
               <div class="absolute top-0 right-0 left-0 h-2 bg-gradient-to-r from-indigo-500 via-primary to-emerald-500"></div>
               <div class="flex items-center justify-between mb-6">
                   <div class="flex items-center gap-2.5">
@@ -1964,7 +1824,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
               const bindingNames = uniqueBindings.map(b => b.name);
 
               const finalLoaderCode = rawImportsStr + '\n\n' +
-                  '// Zagrooo Gateway - Obfuscated Loader Context (v2.5.4.2 Optimized)\n' +
+                  '// Nahan Gateway - Obfuscated Loader Context (v2.5.4.2 Optimized)\n' +
                   'const _0xNahanPayload = "' + hexOutput + '";\n' +
                   'const _0xNahanKey = ' + randKey + ';\n\n' +
                   'const _0xNahanBytes = new Uint8Array((_0xNahanPayload.match(/.{1,2}/g) || []).map(x => parseInt(x, 16) ^ _0xNahanKey));\n' +
@@ -2687,7 +2547,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
                     let logsHtml = '';
                     data.logs.forEach(log => {
                         const dateStr = new Date(log.ts).toLocaleString('en-US', {hour12: false});
-                        logsHtml += `<div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-darkborder/50 gap-2"><div><p class="text-sm font-bold text-slate-700 dark:text-slate-200">${log.type}</p><p class="text-xs text-slate-500 truncate max-w-[200px] sm:max-w-xs" title="${log.detail}">${log.detail}</p></div><span class="text-[10px] font-mono text-slate-400 bg-[var(--color-surface)] px-2 py-1 rounded shrink-0">${dateStr}</span></div>`;
+                        logsHtml += `<div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-darkborder/50 gap-2"><div><p class="text-sm font-bold text-slate-700 dark:text-slate-200">${log.type}</p><p class="text-xs text-slate-500 truncate max-w-[200px] sm:max-w-xs" title="${log.detail}">${log.detail}</p></div><span class="text-[10px] font-mono text-slate-400 bg-[var(--color-surface)]  px-2 py-1 rounded shrink-0">${dateStr}</span></div>`;
                     });
                     container.innerHTML = logsHtml;
                 } else {
@@ -3229,7 +3089,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
                 let profilesHtml = '';
                 data.profiles.forEach(p => {
                             const isDef = p.name === 'Default';
-                            let html = `<div class="bg-[var(--color-surface)] rounded-3xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-slate-200/70 dark:border-darkborder/70 relative mb-4 break-inside-avoid inline-block w-full" data-accordion>
+                            let html = `<div class="bg-[var(--color-surface)]  rounded-3xl shadow-sm border border-slate-200 dark:border-darkborder relative mb-4 break-inside-avoid inline-block w-full" data-accordion>
     <div class="absolute top-0 end-0 w-32 h-32 bg-primary/5 rounded-bl-[100px] -z-10"></div>
     <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-5 md:p-6">
         <h3 class="text-lg font-bold text-slate-800 dark:text-white flex items-center">
@@ -3540,7 +3400,7 @@ proxyip.cmliussss.net" class="w-full px-4 py-3 rounded-xl border border-slate-20
                       rawSync += rawSync.includes('?') ? '&flag=a' : '?flag=a';
                   }
 
-                  tblHtml += `<div class="native-press bg-[var(--color-surface)] rounded-2xl border border-slate-200/70 dark:border-darkborder/70 p-4 hover:shadow-md transition-shadow">
+                  tblHtml += `<div class="native-press bg-[var(--color-surface)]  rounded-2xl border border-slate-200 dark:border-darkborder p-4 hover:shadow-md transition-shadow">
                       <div class="flex items-center justify-between mb-3">
                           <div class="flex items-center gap-2 min-w-0 flex-1">
                               <span class="w-2 h-2 rounded-full shrink-0 ${u.isPaused ? (isAutoDisabled ? 'bg-red-500' : 'bg-amber-500') : (isExp ? 'bg-red-400' : 'bg-emerald-500')}"></span>
